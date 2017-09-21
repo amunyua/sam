@@ -2,11 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Models\Role;
+use App\Models\Route;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
-class RoleDataTable extends DataTable
+class RouteDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -18,7 +18,7 @@ class RoleDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'roles.datatables_actions');
+        return $dataTable->addColumn('action', 'routes.datatables_actions');
     }
 
     /**
@@ -27,7 +27,7 @@ class RoleDataTable extends DataTable
      * @param \App\Models\Post $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Role $model)
+    public function query(Route $model)
     {
         return $model->newQuery();
     }
@@ -47,11 +47,11 @@ class RoleDataTable extends DataTable
                 'dom'     => 'Bfrtip',
                 'order'   => [[0, 'desc']],
                 'buttons' => [
-//                    'create',
-//                    'export',
-//                    'print',
-//                    'reset',
-//                    'reload',
+                    'create',
+                    'export',
+                    'print',
+                    'reset',
+                    'reload',
                 ],
             ]);
     }
@@ -64,9 +64,10 @@ class RoleDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'role_code',
-            'role_name',
-            'role_status'
+            'route_name',
+            'url',
+            'route_status',
+            'parent_route'
         ];
     }
 
@@ -77,6 +78,6 @@ class RoleDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'rolesdatatable_' . time();
+        return 'routesdatatable_' . time();
     }
 }

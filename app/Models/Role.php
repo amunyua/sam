@@ -7,7 +7,7 @@ use Eloquent as Model;
 /**
  * Class Role
  * @package App\Models
- * @version September 18, 2017, 10:56 am UTC
+ * @version September 20, 2017, 3:00 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection menus
  * @property \Illuminate\Database\Eloquent\Collection RoleRoute

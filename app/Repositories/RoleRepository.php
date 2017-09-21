@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class RoleRepository
  * @package App\Repositories
- * @version September 18, 2017, 10:56 am UTC
+ * @version September 20, 2017, 3:00 pm UTC
  *
  * @method Role findWithoutFail($id, $columns = ['*'])
  * @method Role find($id, $columns = ['*'])
