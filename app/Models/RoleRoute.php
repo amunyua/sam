@@ -3,26 +3,24 @@
 namespace App\Models;
 
 //use Eloquent as Model;
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Model;
 /**
- * Class Menu
+ * Class RoleRoute
  * @package App\Models
- * @version September 20, 2017, 4:35 pm UTC
+ * @version September 22, 2017, 9:56 am UTC
  *
+ * @property \App\Models\Role role
  * @property \App\Models\Route route
- * @property \Illuminate\Database\Eloquent\Collection roleRoutes
+ * @property \Illuminate\Database\Eloquent\Collection menus
  * @property \Illuminate\Database\Eloquent\Collection roleUsers
- * @property string menu_name
- * @property integer parent_menu
+ * @property integer role_id
  * @property integer route_id
- * @property integer sequence
- * @property boolean menu_status
  */
-class Menu extends Model
+class RoleRoute extends Model
 {
 
-    public $table = 'menus';
+    public $table = 'role_route';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -30,11 +28,8 @@ class Menu extends Model
 
 
     public $fillable = [
-        'menu_name',
-        'parent_menu',
-        'route_id',
-        'sequence',
-        'menu_status'
+        'role_id',
+        'route_id'
     ];
 
     /**
@@ -44,11 +39,8 @@ class Menu extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'menu_name' => 'string',
-        'parent_menu' => 'integer',
-        'route_id' => 'integer',
-        'sequence' => 'integer',
-        'menu_status' => 'boolean'
+        'role_id' => 'integer',
+        'route_id' => 'integer'
     ];
 
     /**
@@ -57,8 +49,16 @@ class Menu extends Model
      * @var array
      */
     public static $rules = [
-        "menu_name"=>'required'
+        
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function role()
+    {
+        return $this->belongsTo(\App\Models\Role::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

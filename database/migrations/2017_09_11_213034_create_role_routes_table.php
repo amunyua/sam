@@ -13,7 +13,7 @@ class CreateRoleRoutesTable extends Migration
      */
     public function up()
     {
-        Schema::create('role_routes', function (Blueprint $table) {
+        Schema::create('role_route', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->unsigned();
             $table->integer('route_id')->unsigned();

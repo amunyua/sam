@@ -21,8 +21,6 @@ class UserSeeder extends Seeder
         $admin->name = 'Admin Admin';
         $admin->email = 'admin@admin.com';
         $admin->password = bcrypt(123456);
-//        $admin->phone_no = '700000000';
-//        $admin->masterfile_id = $admin_mf->id;
         $admin->save();
         $admin->roles()->attach($sys_admin);
     }

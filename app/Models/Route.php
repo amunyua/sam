@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+//use Eloquent as Model;
 
+use Illuminate\Database\Eloquent\Model;
 /**
  * Class Route
  * @package App\Models
@@ -69,5 +70,9 @@ class Route extends Model
     public function roleRoutes()
     {
         return $this->hasMany(\App\Models\RoleRoute::class);
+    }
+
+    public function roles(){
+        return $this->belongsToMany('App\Models\Role');
     }
 }

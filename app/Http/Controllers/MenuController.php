@@ -6,9 +6,13 @@ use App\DataTables\MenuDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
+use App\Models\Menu;
+use App\Models\Route;
 use App\Repositories\MenuRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class MenuController extends AppBaseController
@@ -19,6 +23,7 @@ class MenuController extends AppBaseController
     public function __construct(MenuRepository $menuRepo)
     {
         $this->middleware('auth');
+
         $this->menuRepository = $menuRepo;
     }
 
@@ -149,4 +154,5 @@ class MenuController extends AppBaseController
 
         return redirect(route('menus.index'));
     }
+
 }

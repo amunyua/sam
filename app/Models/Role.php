@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
 
-use Eloquent as Model;
+//use Eloquent as Model;
 
 /**
  * Class Role
@@ -67,5 +68,9 @@ class Role extends Model
     public function roleUsers()
     {
         return $this->hasMany(\App\Models\RoleUser::class);
+    }
+
+    public function routes(){
+        return $this->belongsToMany("App\Models\Route");
     }
 }
