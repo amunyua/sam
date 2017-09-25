@@ -6,10 +6,15 @@ use App\DataTables\RoleDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Models\RoleRoute;
+use App\Models\Route;
 use App\Repositories\RoleRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
 use Response;
+use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Services\DataTable;
 
 class RoleController extends AppBaseController
 {
@@ -71,14 +76,17 @@ class RoleController extends AppBaseController
     public function show($id)
     {
         $role = $this->roleRepository->findWithoutFail($id);
-
+        if (request()->ajax()) {
+            response()->json($role);
+        }
         if (empty($role)) {
             Flash::error('Role not found');
 
             return redirect(route('roles.index'));
         }
 
-        return view('roles.show')->with('role', $role);
+
+        return response()->json($role);
     }
 
     /**
@@ -148,5 +156,21 @@ class RoleController extends AppBaseController
         Flash::success('Role deleted successfully.');
 
         return redirect(route('roles.index'));
+    }
+
+    public function getRoutes($id = null){
+        $routes = Route::where('parent_route','<>','null')->get();
+//                $all_routes = RoleRoute::where('role_id','==',$id)->role_id->get();
+
+
+        $dataTab = Datatables::of($routes)
+            ->editColumn('id',function ($route){
+                $checked = '<input type="checkbox" class="minimal" value='.$route->id.'>';
+//                if(in_array($route->id,$all_routes))
+                    return $checked;
+            })
+            ->rawColumns(['id'])
+            ->make(true);
+        return $dataTab;
     }
 }

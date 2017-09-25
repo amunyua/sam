@@ -35,14 +35,14 @@ class MenuSeeder extends Seeder
 //
 //
 //
-//        #### user management
-//        $user_mngt_route = Route::where('route_name', 'User Management')->first();
-//        $user_mngt = new Menu();
-//        $user_mngt->fa_icon = 'fa-group';
-//        $user_mngt->route_id = $user_mngt_route->id;
-//        $user_mngt->sequence = 8;
-//        $user_mngt->save();
-//        $user_mngt_id = $user_mngt->id;
+        #### user management
+        $user_mngt_route = Route::where('route_name', 'User Management')->first();
+        $user_mngt = new Menu();
+        $user_mngt->fa_icon = 'fa-group';
+        $user_mngt->route_id = $user_mngt_route->id;
+        $user_mngt->sequence = 8;
+        $user_mngt->save();
+        $user_mngt_id = $user_mngt->id;
 //
 //        $all_user_route = Route::where('route_name', 'All Users')->first();
 //        $all_user = new Menu();
@@ -51,13 +51,12 @@ class MenuSeeder extends Seeder
 //        $all_user->sequence = 1;
 //        $all_user->save();
 //
-//        $role_route = Route::where('route_name', 'User Roles')->first();
-//        $role = new Menu();
-//        $role->route_id = $role_route->id;
-//        $role->parent_menu = $user_mngt->id;
-//        $role->sequence = 2;
-//        $role->save();
-//        $all_user->save();
+        $role_route = Route::where('route_name', 'User Roles')->first();
+        $role = new Menu();
+        $role->route_id = $role_route->id;
+        $role->parent_menu = $user_mngt->id;
+        $role->sequence = 2;
+        $role->save();
 //
 //        $audit_trail_route = Route::where('route_name', 'Audit Trail')->first();
 //        $audit_trail = new Menu();

@@ -95,11 +95,11 @@ class RouteSeeder extends Seeder
 //        $system_config->save();
 //        $system_config->roles()->attach($admin);
 //
-//        #### user management
-//        $user_mngt = new Route();
-//        $user_mngt->route_name = 'User Management';
-//        $user_mngt->save();
-//        $user_mngt_id = $user_mngt->id;
+        #### user management
+        $user_mngt = new Route();
+        $user_mngt->route_name = 'User Management';
+        $user_mngt->save();
+        $user_mngt_id = $user_mngt->id;
 //
 //        #### user management children
 //        $all_user = new Route();
@@ -109,12 +109,12 @@ class RouteSeeder extends Seeder
 //        $all_user->save();
 //        $all_user->roles()->attach($admin);
 //
-//        $roles = new Route();
-//        $roles->route_name = 'User Roles';
-//        $roles->url = 'user_roles';
-//        $roles->parent_route = $user_mngt_id;
-//        $roles->save();
-//        $roles->roles()->attach($admin);
+        $roles = new Route();
+        $roles->route_name = 'User Roles';
+        $roles->url = 'roles';
+        $roles->parent_route = $user_mngt_id;
+        $roles->save();
+        $roles->roles()->attach($admin);
 //
 //        $role = new Route();
 //        $role->route_name = 'Delete User';

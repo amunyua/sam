@@ -35,3 +35,4 @@ Route::resource('routes', 'RouteController');
 
 
 Route::resource('menus', 'MenuController');
+Route::get('getRoutes',"RoleController@getRoutes");

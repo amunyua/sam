@@ -72,13 +72,13 @@ class RouteController extends AppBaseController
     {
         $route = $this->routeRepository->findWithoutFail($id);
 
-        if (empty($route)) {
-            Flash::error('Route not found');
+//        if (empty($route)) {
+//            Flash::error('Route not found');
+//
+//            return redirect(route('routes.index'));
+//        }
 
-            return redirect(route('routes.index'));
-        }
-
-        return view('routes.show')->with('route', $route);
+        return response()->json($route);
     }
 
     /**

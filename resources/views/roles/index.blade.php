@@ -72,6 +72,7 @@
 
                    </div>
                    <div class="modal-footer">
+                       <input type="text" id="editDetails" value="{{ url("/roles") }}">
                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
                        <button type="submit" class="btn btn-primary">Save</button>
                    </div>
@@ -105,5 +106,45 @@
                 </div>
             </form>
         </div>
+
+    {{--delete modal--}}
+    <div class="modal fade" id="attach-permissions-modal" role="dialog">
+        <form id="" method="post">
+            {{--<input name="_method" type="hidden" value="DELETE">--}}
+            {{ csrf_field() }}
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Permissions</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table" id="permissions-table" style="width: 100%;">
+                            <thead>
+                            <tr>
+                                {{--<th>Action</th>--}}
+                                <th>Menu name</th>
+                                <th>Attach/Detach</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="table-url" value="{{ url('/getRoutes') }}">
+                        <input type="hidden" id="id-holder">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
     @endsection
+@push('js')
+    <script src="{{URL::asset('js/custom/roles.js') }}"></script>
+@endpush
 

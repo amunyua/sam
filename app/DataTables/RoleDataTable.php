@@ -18,7 +18,20 @@ class RoleDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'roles.datatables_actions');
+        return $dataTable->addColumn('action', 'roles.datatables_actions')
+//            ->addColumn('permission','<div class="btn-group"><a href="#attach-permissions-modal" data-toggle="modal" class="attach-pms-btn btn btn-xs btn-primary"><i class="glyphicon glyphicon-paperclip"></i> Attach Permissions</a></div>' ,3)
+            ->addColumn('permission',function (Role $role){
+                return '<div class="btn-group"><a href="#attach-permissions-modal" r-id="'.$role->id.'" data-toggle="modal" class="attach-pms-btn btn btn-xs btn-primary"><i class="glyphicon glyphicon-paperclip"></i> Attach Permissions</a></div>';
+            } ,3)
+            ->rawColumns(['action','permission','role_status'])
+            ->editColumn('role_status',function(Role $role){
+                $btn = '<label class="label label-danger">Inactive</label>';
+                if($role->role_status){
+                    $btn = '<label class="label label-success">Active</label>';
+                }
+                return $btn;
+            })
+            ;
     }
 
     /**
@@ -42,7 +55,22 @@ class RoleDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
+
+            ->addColumn([
+                'defaultContent' => '',
+                'data'           => 'permission',
+                'name'           => 'permission',
+                'title'          => 'Assign Permissions',
+                'render'         => null,
+                'orderable'      => false,
+                'searchable'     => false,
+                'exportable'     => false,
+                'printable'      => false,
+                'footer'         => '',
+                'width' => '80px'
+            ])
             ->addAction(['width' => '80px'])
+//            ->addAction(['width' => '80px',"title"=>"Permission",'name'=>"permissions"])
             ->parameters([
                 'dom'     => 'Bfrtip',
                 'order'   => [[0, 'desc']],

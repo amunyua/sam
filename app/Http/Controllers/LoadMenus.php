@@ -76,7 +76,7 @@ class LoadMenus extends Controller
                         echo $route->route_name . '</span><span class="pull-right-container">
                              <i class="fa fa-angle-left pull-right"></i>
                               </span></a>';
-                        echo '<ul class="treeview-menu" style="display: none;">';
+                        echo '<ul class="treeview-menu " style="display: none;">';
                         $this->loadSideMenu($menu->id);
                         echo '</ul>';
                         echo '</li>';
