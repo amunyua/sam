@@ -136,7 +136,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
+                    {{--<li><a href="{!! url('/register') !!}">Register</a></li>--}}
                 </ul>
             </div>
         </div>
@@ -172,6 +172,11 @@
 
             $("body").find(".select2").select2();
             $("#table1").DataTable();
+            $("body").find('input[type="checkbox"].i-check').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
             //iCheck for checkbox and radio inputs
             $("body").find('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
                 checkboxClass: 'icheckbox_minimal-blue',

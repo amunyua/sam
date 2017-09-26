@@ -27,12 +27,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-Route::resource('roles', 'RoleController');
-
 Route::resource('routes', 'RouteController');
 
-
-
 Route::resource('menus', 'MenuController');
-Route::get('getRoutes',"RoleController@getRoutes");
+
+##### Roles
+Route::resource('roles', 'RoleController');
+Route::get('getRoutes/{id}',"RoleController@getRoutes");
+//assigning permissions
+Route::any('/give-permission/','RoleController@assignPermissions');

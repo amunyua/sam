@@ -111,7 +111,7 @@
     <div class="modal fade" id="attach-permissions-modal" role="dialog">
         <form id="" method="post">
             {{--<input name="_method" type="hidden" value="DELETE">--}}
-            {{ csrf_field() }}
+
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -121,6 +121,7 @@
                         <h4 class="modal-title">Permissions</h4>
                     </div>
                     <div class="modal-body">
+                        <input type="hidden" id="crf-token" value="{{ csrf_token() }}">
                         <table class="table" id="permissions-table" style="width: 100%;">
                             <thead>
                             <tr>
@@ -136,8 +137,9 @@
                     <div class="modal-footer">
                         <input type="hidden" id="table-url" value="{{ url('/getRoutes') }}">
                         <input type="hidden" id="id-holder">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <input type="hidden" id="attach-route" value="{{ url('/give-permission') }}">
+                        <button type="button" class="btn btn-success pull-right" data-dismiss="modal">Ok</button>
+                        {{--<button type="submit" class="btn btn-primary">Save</button>--}}
                     </div>
                 </div>
             </div>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\RoleDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\RoleRoute;
@@ -11,7 +10,10 @@ use App\Models\Route;
 use App\Repositories\RoleRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 use Response;
 use Yajra\DataTables\Facades\DataTables;
 use Yajra\DataTables\Services\DataTable;
@@ -160,17 +162,48 @@ class RoleController extends AppBaseController
 
     public function getRoutes($id = null){
         $routes = Route::where('parent_route','<>','null')->get();
-//                $all_routes = RoleRoute::where('role_id','==',$id)->role_id->get();
+        $all_routes = RoleRoute::where('role_id',$id)->pluck('route_id')->toArray();
+
 
 
         $dataTab = Datatables::of($routes)
-            ->editColumn('id',function ($route){
-                $checked = '<input type="checkbox" class="minimal" value='.$route->id.'>';
-//                if(in_array($route->id,$all_routes))
+            ->editColumn('id',function ($route) use($all_routes){
+
+                if(in_array($route->id,$all_routes)){
+                    $checked = '<input type="checkbox" class="i-check menu-permission" value='.$route->id.' checked>';
+                }else{
+                    $checked =  '<input type="checkbox" class="i-check menu-permission" value='.$route->id.' >';
+                }
                     return $checked;
             })
             ->rawColumns(['id'])
             ->make(true);
         return $dataTab;
+    }
+    public function assignPermissions(\Illuminate\Http\Request $request){
+        $status = [];
+        if($request->action == 'allocate'){
+            $role = new RoleRoute();
+            $role->role_id = $request->role_id;
+            $role->route_id = $request->route_id;
+            try{
+                $role->save();
+                $status['status'] = ["state"=>"success","message"=>"Permission has been granted"];
+            }catch (QueryException $exception){
+                $status['status'] = "failed";
+            }
+
+        }else{
+            try{
+            $role = DB::table("role_route")->where([
+                ['role_id','=', $request->role_id],
+                ['route_id','=', $request->route_id],
+            ])->delete();
+                $status['status'] = ["state"=>"success","message"=>"Permission has been removed"];
+            }catch (QueryException $exception){
+                $status['status'] = "failed";
+            }
+        }
+        return response()->json($status);
     }
 }
