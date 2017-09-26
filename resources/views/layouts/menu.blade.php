@@ -36,3 +36,4 @@ $smenu = new \App\Http\Controllers\LoadMenus();
 $smenu->loadSideMenu(NULL);
 ?>
 
+

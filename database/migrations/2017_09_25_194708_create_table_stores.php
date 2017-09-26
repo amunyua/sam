@@ -15,9 +15,10 @@ class CreateTableStores extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('store_name');
+            $table->string('location');
+            $table->boolean('status');
             $table->timestamps();
-
         });
     }
 
@@ -29,5 +30,6 @@ class CreateTableStores extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('stores');
     }
 }

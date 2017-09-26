@@ -115,7 +115,20 @@ class RouteSeeder extends Seeder
         $roles->parent_route = $user_mngt_id;
         $roles->save();
         $roles->roles()->attach($admin);
-//
+
+        #### Store management
+        $store_management = new Route();
+        $store_management->route_name = 'Store Management';
+        $store_management->save();
+        $store_m_id = $store_management->id;
+
+        $role = new Route();
+        $role->route_name = 'Stores';
+        $role->url = 'stores';
+        $role->parent_route = $store_m_id;
+        $role->save();
+        $role->roles()->attach($admin);
+
 //        $role = new Route();
 //        $role->route_name = 'Delete User';
 //        $role->url = 'delete-user/{id}';

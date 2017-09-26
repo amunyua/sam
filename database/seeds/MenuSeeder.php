@@ -88,6 +88,21 @@ class MenuSeeder extends Seeder
 //        $menu->sequence = 2;
 //        $menu->save();
 
+        #### Store management
+        $store_route = Route::where('route_name', 'Store Management')->first();
+        $store = new Menu();
+        $store->fa_icon = 'fa-home';
+        $store->route_id = $store_route->id;
+        $store->sequence = 2;
+        $store->save();
+        $store_id = $store->id;
+
+        $str_r = Route::where('route_name', 'Stores')->first();
+        $store_child = new Menu();
+        $store_child->route_id = $str_r->id;
+        $store_child->parent_menu = $store_id;
+        $store_child->sequence = 1;
+        $store_child->save();
 
     }
 }

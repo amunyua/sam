@@ -57,8 +57,8 @@ class LoadMenus extends Controller
                     if (in_array($route->route_name, $allocated_routes)) {
                         echo '<li class="' . $child_class . ' ' . $lip_active . '">';
 
-                        echo '<a href="' . url($url) . '" title="' . $route->route_name . '"><i class="fa fa-circle-o"></i>';
-                        echo (!empty($menu->fa_icon)) ? '<i class="fa ' . $menu->fa_icon . ' txt-color-blue"></i> ' : '';
+                        echo '<a href="' . url($url) . '" title="' . $route->route_name . '"><i class="fa fa-angle-double-right"></i>';
+                        echo (!empty($menu->fa_icon)) ? '<i class="fa ' . $menu->fa_icon . ' text-yellow"></i> ' : '';
 //                        echo '<span class="menu-item-parent">';
                         echo $route->route_name . '</span></a>';
 
@@ -71,7 +71,7 @@ class LoadMenus extends Controller
                         echo '<li class="' . $parent_class . ' ' . $lip_active . '">';
 
                         echo '<a href="' . url($url) . '" title="' . $route->route_name . '">';
-                        echo (!empty($menu->fa_icon)) ? '<i class="fa ' . $menu->fa_icon . ' txt-color-blue"></i> ' : '';
+                        echo (!empty($menu->fa_icon)) ? '<i class="fa ' . $menu->fa_icon . ' text-yellow"></i> ' : '';
                         echo '<span>';
                         echo $route->route_name . '</span><span class="pull-right-container">
                              <i class="fa fa-angle-left pull-right"></i>

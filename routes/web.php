@@ -36,3 +36,6 @@ Route::resource('roles', 'RoleController');
 Route::get('getRoutes/{id}',"RoleController@getRoutes");
 //assigning permissions
 Route::any('/give-permission/','RoleController@assignPermissions');
+
+
+Route::resource('stores', 'StoreController');
