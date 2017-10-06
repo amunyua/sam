@@ -18,12 +18,15 @@ $(document).on("click",".edit-common",function () {
         success: function (data) {
             if(data) {
                 $('form#edit-form').find('input.form-control,select.form-control').each(function (index, element) {
-                    console.log();
+                    // console.log();
                     var attrId = $(element).attr('id');
-                    if(data[attrId] =="true"){
-                        alert("true");
-                    }
+                    // alert(attrId);
                     var e = data[attrId];
+                    if(data[attrId] === true){
+                        e= 1;
+                    }else if(data[attrId] === false){
+                        e=0;
+                    }
                     // alert(e);
                     $(element).val(e);
                 })

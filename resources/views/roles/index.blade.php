@@ -72,7 +72,7 @@
 
                    </div>
                    <div class="modal-footer">
-                       <input type="text" id="editDetails" value="{{ url("/roles") }}">
+                       <input type="hidden" id="editDetails" value="{{ url("/roles") }}">
                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
                        <button type="submit" class="btn btn-primary">Save</button>
                    </div>

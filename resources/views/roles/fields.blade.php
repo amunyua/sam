@@ -20,9 +20,9 @@
 </div>--}}
 <div class="form-group">
     {!! Form::label('role_status', 'Role Status:') !!}
-    <select name="role_status" class=" form-control">
-        <option value="true">Active</option>
-        <option value="false">InActive</option>
+    <select name="role_status" class=" form-control" id="role_status">
+        <option value="1">Active</option>
+        <option value="0">InActive</option>
     </select>
 </div>
 

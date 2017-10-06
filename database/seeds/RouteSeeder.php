@@ -101,14 +101,14 @@ class RouteSeeder extends Seeder
         $user_mngt->save();
         $user_mngt_id = $user_mngt->id;
 //
-//        #### user management children
-//        $all_user = new Route();
-//        $all_user->route_name = 'All Users';
-//        $all_user->url = 'all_users';
-//        $all_user->parent_route = $user_mngt_id;
-//        $all_user->save();
-//        $all_user->roles()->attach($admin);
-//
+        #### user management children
+        $all_user = new Route();
+        $all_user->route_name = 'System Users';
+        $all_user->url = 'users';
+        $all_user->parent_route = $user_mngt_id;
+        $all_user->save();
+        $all_user->roles()->attach($admin);
+
         $roles = new Route();
         $roles->route_name = 'User Roles';
         $roles->url = 'roles';

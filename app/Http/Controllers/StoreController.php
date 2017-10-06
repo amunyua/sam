@@ -71,13 +71,14 @@ class StoreController extends AppBaseController
     {
         $store = $this->storeRepository->findWithoutFail($id);
 
-        if (empty($store)) {
+       /* if (empty($store)) {
             Flash::error('Store not found');
 
             return redirect(route('stores.index'));
         }
 
-        return view('stores.show')->with('store', $store);
+        return view('stores.show')->with('store', $store);*/
+        return response()->json($store);
     }
 
     /**

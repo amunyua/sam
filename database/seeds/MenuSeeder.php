@@ -19,7 +19,7 @@ class MenuSeeder extends Seeder
 //        #### Dashboard
         $dashboard_route = Route::where('route_name', 'Dashboard')->first();
         $dashboard = new Menu();
-        $dashboard->fa_icon = 'fa-home';
+        $dashboard->fa_icon = 'fa-dashboard';
         $dashboard->route_id = $dashboard_route->id;
         $dashboard->sequence = 1;
         $dashboard->save();
@@ -44,12 +44,12 @@ class MenuSeeder extends Seeder
         $user_mngt->save();
         $user_mngt_id = $user_mngt->id;
 //
-//        $all_user_route = Route::where('route_name', 'All Users')->first();
-//        $all_user = new Menu();
-//        $all_user->route_id = $all_user_route->id;
-//        $all_user->parent_menu = $user_mngt->id;
-//        $all_user->sequence = 1;
-//        $all_user->save();
+        $all_user_route = Route::where('route_name', 'System Users')->first();
+        $all_user = new Menu();
+        $all_user->route_id = $all_user_route->id;
+        $all_user->parent_menu = $user_mngt->id;
+        $all_user->sequence = 1;
+        $all_user->save();
 //
         $role_route = Route::where('route_name', 'User Roles')->first();
         $role = new Menu();

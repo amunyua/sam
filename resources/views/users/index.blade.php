@@ -3,12 +3,12 @@
 @section('content')
 
     <section class="content-header">
-    @section("pageTitle","Stores")
-    @section("pageSubtitle","subtitle here")
+    @section("pageTitle","Users")
+    @section("pageSubtitle","All system users")
 
     @section("breadcrumbs")
         <li>Home</li>
-        <li>Stores</li>
+        <li>Users</li>
         @endsection
         <h1 class="pull-right">
           <a class="btn btn-primary btn-sm pull-right" href="#create-modal" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px">Add New</a>
@@ -16,33 +16,33 @@
     </section>
     <div class="content">
         <div class="clearfix"></div>
-
+        @include('adminlte-templates::common.errors')
         @include('flash::message')
 
         <div class="clearfix"></div>
         <div class="box box-info box-solid">
          <div class="box-header">
-                        <h3 class="box-title">All Stores</h3>
+                        <h3 class="box-title">All Users</h3>
                     </div>
             <div class="box-body">
-                    @include('stores.table')
+                    @include('users.table')
             </div>
         </div>
     </div>
 @endsection
 @section('modals')
     <div class="modal fade" id="create-modal" role="dialog">
-            {!! Form::open(['route' => 'stores.store']) !!}
+            {!! Form::open(['route' => 'users.store']) !!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">Create Stores</h4>
+                        <h4 class="modal-title">Create Users</h4>
                     </div>
                     <div class="modal-body">
-                        @include('stores.fields')
+                        @include('users.fields')
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
@@ -65,14 +65,14 @@
                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
                        </button>
-                       <h4 class="modal-title">Edit Stores</h4>
+                       <h4 class="modal-title">Edit Users</h4>
                    </div>
                    <div class="modal-body">
-                       @include('stores.fields')
+                       @include('users.fields')
 
                    </div>
                    <div class="modal-footer">
-                        <input type="hidden" id="editDetails" value="{{ url("/stores") }}">
+                        <input type="hidden" id="editDetails" value="{{ url("/users") }}">
                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
                        <button type="submit" class="btn btn-primary">Save</button>
                    </div>
@@ -93,10 +93,10 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title">Delete Stores</h4>
+                            <h4 class="modal-title">Delete Users</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this Stores?</p>
+                            <p>Are you sure you want to delete this Users?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>

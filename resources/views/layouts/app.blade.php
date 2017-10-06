@@ -170,7 +170,7 @@
         $(document).ready(function(){
             $("body").find(".active.open").closest('li.treeview').addClass('active').find("ul").removeAttr("style");
 
-            $("body").find(".select2").select2();
+            $("body").find(".select2").attr('style','width:100%').select2();
             $("#table1").DataTable();
             $("body").find('input[type="checkbox"].i-check').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
