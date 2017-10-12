@@ -51,6 +51,19 @@
 <!-- Status Field -->
 
 <div class="form-group">
+    <label for="store_id" class="control-label">Store</label>
+    <select name="store_id" class="form-control select2" id="store_id">
+        <option value="">Select store</option>
+        @if(count($stores))
+            @foreach($stores as $store)
+                <option value="{{ $store->id }}">{{ $store->store_name }}</option>
+                @endforeach
+            @endif
+    </select>
+</div>
+
+
+<div class="form-group">
   {!! Form::label('status', 'Status:') !!}
   <select name="status" class="form-control select2" id='status'>
       <option value="1">Active</option>

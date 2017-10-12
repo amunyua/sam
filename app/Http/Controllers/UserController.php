@@ -29,8 +29,10 @@ class UserController extends AppBaseController
     public function index(UserDataTable $userDataTable)
     {
         $role = Role::where('role_status','=',true)->get();
+        $stores = Store::all();
         return $userDataTable->render('users.index',[
-            'roles'=>$role
+            'roles'=>$role,
+            'stores'=>$stores
         ]);
     }
 
@@ -51,6 +53,7 @@ class UserController extends AppBaseController
 //            'remember_token' => 'string',
             'phone_number' => 'required|unique:users,phone_number',
             'id_number' => 'required',
+            'store_id'=> 'required'
         ]);
 
 //        $user = $this->userRepository->create($input);
@@ -63,6 +66,8 @@ class UserController extends AppBaseController
             $user->phone_number = $request->phone_number;
             $user->id_number = $request->id_number;
             $user->status = true;
+            $user->store_id = $request->store_id;
+//            $user->fill($request->all());
 
             $user->save();
 

@@ -72,12 +72,7 @@ class User extends Model
      * @var array
      */
     public static $rules = [
-            'email'=>'required|unique:users,email|',
-            'name' => 'required|unique:users,name',
-//            'password' => 'string',
-//            'remember_token' => 'string',
-            'phone_number' => 'required|unique:users,phone_number',
-            'id_number' => 'required',
+
     ];
 
     /**
@@ -97,5 +92,9 @@ class User extends Model
     }
     public function roles(){
         return $this->belongsToMany('App\Models\Role', 'role_user', 'user_id', 'role_id');
+    }
+
+    public function role(){
+        return $this->hasOne('App\Models\Role');
     }
 }

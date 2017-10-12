@@ -19,6 +19,7 @@ class UserDataTable extends DataTable
         $dataTable = new EloquentDataTable($query);
 
         return $dataTable->addColumn('action', 'users.datatables_actions')
+//            ->addColumn('roles.role_name','roles.role_name')
             ->rawColumns(['action','status','password_updated'])
             ->editColumn('status',function(User $role){
                 $btn = '<label class="label label-danger">Inactive</label>';
@@ -56,6 +57,19 @@ class UserDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
+            ->addColumn([
+                'defaultContent' => '',
+                'data'           => 'roles.role_name',
+                'name'           => 'roles.role_name',
+                'title'          => 'Role name',
+                'render'         => null,
+                'orderable'      => false,
+                'searchable'     => false,
+                'exportable'     => false,
+                'printable'      => false,
+                'footer'         => '',
+                'width' => '80px'
+            ])
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
