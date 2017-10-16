@@ -41,3 +41,11 @@ Route::any('/give-permission/','RoleController@assignPermissions');
 Route::resource('stores', 'StoreController');
 
 Route::resource('users', 'UserController');
+
+
+
+Route::resource('productCategories', 'ProductCategoryController');
+
+
+
+Route::resource('products', 'ProductController');

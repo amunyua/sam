@@ -104,5 +104,32 @@ class MenuSeeder extends Seeder
         $store_child->sequence = 1;
         $store_child->save();
 
+        #### Product management
+        $product_route = Route::where('route_name', 'Product Management')->first();
+        $product = new Menu();
+        $product->fa_icon = 'fa-home';
+        $product->route_id = $product_route->id;
+        $product->sequence = 3;
+        $product->save();
+        $product_id = $product->id;
+
+        //product categories
+        $str_r = Route::where('route_name', 'Product Categories')->first();
+        $product_cat = new Menu();
+        $product_cat->route_id = $str_r->id;
+        $product_cat->parent_menu = $product_id;
+        $product_cat->sequence = 1;
+        $product_cat->save();
+
+        //products
+        //product categories
+        $str_r = Route::where('route_name', 'All Products')->first();
+        $product_cat = new Menu();
+        $product_cat->route_id = $str_r->id;
+        $product_cat->parent_menu = $product_id;
+        $product_cat->sequence = 2;
+        $product_cat->save();
+
+
     }
 }
