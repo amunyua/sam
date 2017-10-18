@@ -64,9 +64,9 @@ class ProductDataTable extends DataTable
     protected function getColumns()
     {
         return [
-//            'store_id',
+            'name',
             'product_category',
-            'description',
+//            'store_id',
 //            'created_by'
         ];
     }

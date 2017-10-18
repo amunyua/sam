@@ -4,10 +4,10 @@
     <p>{!! $product->id !!}</p>
 </div>
 
-<!-- Store Id Field -->
+<!-- Name Field -->
 <div class="form-group">
-    {!! Form::label('store_id', 'Store Id:') !!}
-    <p>{!! $product->store_id !!}</p>
+    {!! Form::label('name', 'Name:') !!}
+    <p>{!! $product->name !!}</p>
 </div>
 
 <!-- Product Category Field -->
@@ -16,10 +16,10 @@
     <p>{!! $product->product_category !!}</p>
 </div>
 
-<!-- Description Field -->
+<!-- Store Id Field -->
 <div class="form-group">
-    {!! Form::label('description', 'Description:') !!}
-    <p>{!! $product->description !!}</p>
+    {!! Form::label('store_id', 'Store Id:') !!}
+    <p>{!! $product->store_id !!}</p>
 </div>
 
 <!-- Created By Field -->

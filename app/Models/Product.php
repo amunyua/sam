@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-//use Eloquent as Model;
-use Illuminate\Database\Eloquent\Model;
+use Eloquent as Model;
 
 /**
  * Class Product
  * @package App\Models
- * @version October 16, 2017, 6:36 pm UTC
+ * @version October 17, 2017, 2:18 pm UTC
  *
  * @property \App\Models\ProductCategory productCategory
  * @property \App\Models\Store store
@@ -16,9 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Database\Eloquent\Collection roleRoute
  * @property \Illuminate\Database\Eloquent\Collection roleUser
  * @property \Illuminate\Database\Eloquent\Collection users
- * @property integer store_id
+ * @property string name
  * @property integer product_category
- * @property string description
+ * @property integer store_id
  * @property integer created_by
  */
 class Product extends Model
@@ -32,9 +31,9 @@ class Product extends Model
 
 
     public $fillable = [
-        'store_id',
+        'name',
         'product_category',
-        'description',
+        'store_id',
         'created_by'
     ];
 
@@ -45,9 +44,9 @@ class Product extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'store_id' => 'integer',
+        'name' => 'string',
         'product_category' => 'integer',
-        'description' => 'string',
+        'store_id' => 'integer',
         'created_by' => 'integer'
     ];
 

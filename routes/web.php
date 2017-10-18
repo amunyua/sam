@@ -48,4 +48,7 @@ Route::resource('productCategories', 'ProductCategoryController');
 
 
 
+
+
 Route::resource('products', 'ProductController');
+Route::get('/getProductCats','ProductController@getProductCats');

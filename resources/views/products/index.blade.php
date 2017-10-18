@@ -10,102 +10,83 @@
         <li>Home</li>
         <li>Products</li>
         @endsection
-        <h1 class="pull-right">
-          <a class="btn btn-primary btn-sm pull-right" href="#create-modal" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px">Add New</a>
-        </h1>
     </section>
-    <div class="content">
-        <div class="clearfix"></div>
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li><a href="#product_cat_tab" data-toggle="tab">Product Categories</a></li>
+                    <li class="active"><a href="#activity" data-toggle="tab">Products</a></li>
+                    <li><a href="#settings" data-toggle="tab">Menus</a></li>
+                </ul>
+                <div class="tab-content">
 
-        @include('flash::message')
-         @include('adminlte-templates::common.errors')
-
-        <div class="clearfix"></div>
-        <div class="box box-info box-solid">
-         <div class="box-header">
-                        <h3 class="box-title">All Products</h3>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="product_cat_tab">
+                       @include('products.product_cactegories')
                     </div>
-            <div class="box-body">
-                    @include('products.table')
+                    <!-- /.tab-pane -->
+                    <div class="active tab-pane" id="activity">
+                        @include('products.product-tab')
+                    </div>
+                    <div class="tab-pane" id="settings">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
             </div>
+            <!-- /.nav-tabs-custom -->
         </div>
-    </div>
+
 @endsection
-@section('modals')
-    <div class="modal fade" id="create-modal" role="dialog">
-            {!! Form::open(['route' => 'products.store']) !!}
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Create Products</h4>
-                    </div>
-                    <div class="modal-body">
-                        @include('products.fields')
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        {!! Form::close() !!}
-    </div>
-
-    <div class="modal fade" id="edit-modal" role="dialog">
-           <form method="post" id="edit-form">
-               {{ csrf_field() }}
-           <input name="_method" type="hidden" value="PATCH">
-           <div class="modal-dialog">
-               <div class="modal-content">
-                   <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                       <h4 class="modal-title">Edit Products</h4>
-                   </div>
-                   <div class="modal-body">
-                       @include('products.fields')
-
-                   </div>
-                   <div class="modal-footer">
-                        <input type="hidden" id="editDetails" value="{{ url("/products") }}">
-                       <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                       <button type="submit" class="btn btn-primary">Save</button>
-                   </div>
-               </div>
-               <!-- /.modal-content -->
-           </div>
-           </form>
-       </div>
-
-     {{--delete modal--}}
-        <div class="modal fade" id="delete-modal" role="dialog">
-            <form id="delete-form" method="post">
-                <input name="_method" type="hidden" value="DELETE">
-            {{ csrf_field() }}
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">Delete Products</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure you want to delete this Products?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    @endsection
 

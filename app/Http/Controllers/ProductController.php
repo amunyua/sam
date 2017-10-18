@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ProductCategoryDataTable;
 use App\DataTables\ProductDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\ProductCategory;
 use App\Repositories\ProductRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Auth;
 use Response;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends AppBaseController
 {
@@ -21,6 +24,7 @@ class ProductController extends AppBaseController
     {
         $this->middleware('auth');
         $this->productRepository = $productRepo;
+
     }
 
     /**
@@ -31,7 +35,28 @@ class ProductController extends AppBaseController
      */
     public function index(ProductDataTable $productDataTable)
     {
-        return $productDataTable->render('products.index');
+        return $productDataTable->render('products.index',[
+            'parent_categories'=>ProductCategory::where('parent_category','=',null)->get(),
+            'categories'=>ProductCategory::where('store_id','=',Auth::user()->store_id)->get()
+        ]);
+    }
+
+    public function getProductCats(){
+         $prodCats = ProductCategory::query()
+            ->select([
+                "*"
+            ]);
+         return DataTables::of($prodCats)
+                 ->addColumn('action', 'product_categories.datatables_actions')
+                 ->editColumn('parent_category',function(ProductCategory $category){
+                     if($category->parent_category == null){
+                         $cat = "No Parent";
+                     }else{
+                         $cat = ProductCategory::find($category->parent_category)->category_name;
+                     }
+                     return $cat;
+                 })
+             ->make(true);
     }
 
     /**
@@ -54,9 +79,6 @@ class ProductController extends AppBaseController
     public function store(CreateProductRequest $request)
     {
         $input = $request->all();
-        $input['created_by'] = Auth::user()->id;
-        $input['store_id'] = Auth::user()->store_id;
-
 
         $product = $this->productRepository->create($input);
 

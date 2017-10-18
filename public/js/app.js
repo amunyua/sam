@@ -799,9 +799,9 @@ window.Vue = __webpack_require__(35);
 
 Vue.component('example', __webpack_require__(36));
 
-var app = new Vue({
-  el: '#app'
-});
+// var app = new Vue({
+//   el: '#app'
+// });
 
 /***/ }),
 /* 10 */
@@ -41922,9 +41922,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0fbbaec3", Component.options)
+    hotAPI.createRecord("data-v-ac347c9a", Component.options)
   } else {
-    hotAPI.reload("data-v-0fbbaec3", Component.options)
+    hotAPI.reload("data-v-ac347c9a", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -42099,7 +42099,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-0fbbaec3", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-ac347c9a", module.exports)
   }
 }
 

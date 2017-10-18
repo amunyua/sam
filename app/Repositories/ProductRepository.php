@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class ProductRepository
  * @package App\Repositories
- * @version October 16, 2017, 6:36 pm UTC
+ * @version October 17, 2017, 2:18 pm UTC
  *
  * @method Product findWithoutFail($id, $columns = ['*'])
  * @method Product find($id, $columns = ['*'])
@@ -20,9 +20,9 @@ class ProductRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'store_id',
+        'name',
         'product_category',
-        'description',
+        'store_id',
         'created_by'
     ];
 

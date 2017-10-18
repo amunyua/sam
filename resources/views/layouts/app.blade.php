@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Online Shopping</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -145,7 +146,7 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" id="">
                     @yield('content')
                 </div>
             </div>
@@ -158,6 +159,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>--}}
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>--}}
+    <script src="{{ URL::asset('js/app.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/iCheck.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/select2.js') }}"></script>
 
@@ -171,7 +173,7 @@
             $("body").find(".active.open").closest('li.treeview').addClass('active').find("ul").removeAttr("style");
 
             $("body").find(".select2").attr('style','width:100%').select2();
-            $("#table1").DataTable();
+//            $("#table1").DataTable();
             $("body").find('input[type="checkbox"].i-check').iCheck({
                 checkboxClass: 'icheckbox_square-blue',
                 radioClass: 'iradio_square-blue',
