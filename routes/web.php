@@ -25,30 +25,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::resource('routes', 'RouteController');
-
 Route::resource('menus', 'MenuController');
-
 ##### Roles
 Route::resource('roles', 'RoleController');
 Route::get('getRoutes/{id}',"RoleController@getRoutes");
 //assigning permissions
 Route::any('/give-permission/','RoleController@assignPermissions');
-
-
 Route::resource('stores', 'StoreController');
-
 Route::resource('users', 'UserController');
-
-
-
 Route::resource('productCategories', 'ProductCategoryController');
-
-
-
-
-
 Route::resource('products', 'ProductController');
 Route::get('/getProductCats','ProductController@getProductCats');
+Route::get('/getProducts','ProductController@getProducts');

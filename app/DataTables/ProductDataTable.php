@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -17,8 +18,16 @@ class ProductDataTable extends DataTable
     public function dataTable($query)
     {
         $dataTable = new EloquentDataTable($query);
-
-        return $dataTable->addColumn('action', 'products.datatables_actions');
+        return $dataTable->addColumn('action', 'products.datatables_actions')
+            ->editColumn('product_category',function(Product $cat){
+                return ProductCategory::find($cat->product_category)->category_name;
+            })
+//            ->editColumn('product_category',function(ProductCategory $category){
+//
+//                    $cat = ProductCategory::find($category->id)->category_name;
+//                return $cat;
+//            })
+            ;
     }
 
     /**
@@ -44,6 +53,7 @@ class ProductDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
+                'processing'=>true,
                 'dom'     => 'Bfrtip',
                 'order'   => [[0, 'desc']],
                 'buttons' => [

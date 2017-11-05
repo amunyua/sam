@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateStoreRequest;
 use App\Repositories\StoreRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class StoreController extends AppBaseController
@@ -52,6 +53,8 @@ class StoreController extends AppBaseController
     public function store(CreateStoreRequest $request)
     {
         $input = $request->all();
+        $input["created_by"] = Auth::id();
+//        var_dump($input);die();
 
         $store = $this->storeRepository->create($input);
 

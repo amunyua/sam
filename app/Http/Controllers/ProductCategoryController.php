@@ -10,6 +10,7 @@ use App\Models\ProductCategory;
 use App\Repositories\ProductCategoryRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Response;
 
@@ -58,15 +59,22 @@ class ProductCategoryController extends AppBaseController
     public function store(CreateProductCategoryRequest $request)
     {
         $input = $request->all();
-        $input['created_by'] = Auth::user()->id;
+        $input['created_by'] = Auth::id();
         $input['store_id'] = Auth::user()->store_id;
 //        print_r($input);die;
-        $productCategory = $this->productCategoryRepository->create($input);
 
-        Flash::success('Product Category saved successfully.');
+        $status = false;
+        try{
+            $productCategory = $this->productCategoryRepository->create($input);
+            $message = "Product Category saved successfully.";
+            $status = true;
+            Flash::success('Product Category saved successfully.');
+        }catch (QueryException $exception){
+            $message = "Failed ".$exception->errorInfo;
 
-
-        return redirect(route('productCategories.index'));
+        }
+        response()->json(['status'=>$status,'message'=>$message]);
+        return redirect()->back();
     }
 
     /**
@@ -108,6 +116,7 @@ class ProductCategoryController extends AppBaseController
         }
 
         return view('product_categories.edit')->with('productCategory', $productCategory);
+
     }
 
     /**
@@ -132,7 +141,7 @@ class ProductCategoryController extends AppBaseController
 
         Flash::success('Product Category updated successfully.');
 
-        return redirect(route('productCategories.index'));
+        return redirect(route('products.index'));
     }
 
     /**
@@ -156,6 +165,7 @@ class ProductCategoryController extends AppBaseController
 
         Flash::success('Product Category deleted successfully.');
 
-        return redirect(route('productCategories.index'));
+//        return redirect(route('productCategories.index'));
+        return redirect()->back();
     }
 }

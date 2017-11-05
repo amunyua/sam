@@ -56,7 +56,8 @@ class Product extends Model
      * @var array
      */
     public static $rules = [
-        
+        'product_category'=>'required',
+        'name'=>'required'
     ];
 
     /**

@@ -1,3 +1,4 @@
+// alert('ok');
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -802,6 +803,12 @@ Vue.component('example', __webpack_require__(36));
 // var app = new Vue({
 //   el: '#app'
 // });
+//         var productsPage = new Vue({
+//             el: '#products-page',
+//             data: {
+//                 seen:'true'
+//             }
+//         });
 
 /***/ }),
 /* 10 */

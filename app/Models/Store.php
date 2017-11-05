@@ -29,7 +29,8 @@ class Store extends Model
     public $fillable = [
         'store_name',
         'location',
-        'status'
+        'status',
+        'created_by'
     ];
 
     /**
@@ -41,7 +42,8 @@ class Store extends Model
         'id' => 'integer',
         'store_name' => 'string',
         'location' => 'string',
-        'status' => 'boolean'
+        'status' => 'boolean',
+        'created_by'=>'integer'
     ];
 
     /**
@@ -50,7 +52,8 @@ class Store extends Model
      * @var array
      */
     public static $rules = [
-        
+        'store_name'=>'required',
+//        'created_by'=>'required'
     ];
 
     

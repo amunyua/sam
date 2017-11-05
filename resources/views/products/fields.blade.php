@@ -1,15 +1,15 @@
 <!-- Name Field -->
 <div class="form-group">
     {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('name', null, ['class' => 'form-control','required'=>'required','autocomplete'=>'off']) !!}
 </div>
 
 <!-- Product Category Field -->
 <div class="form-group">
     {!! Form::label('parent_category', 'Parent Category:') !!}
-    <select name="parent_category" class="form-control select2" id="parent_category">
+    <select name="product_category" class="form-control select2" id="product_category" required>
         {{--<option value="">select parent category</option>--}}
-        <option value="">No Parent</option>
+        {{--<option value="">No Parent</option>--}}
         @if(count($categories))
             @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>

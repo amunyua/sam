@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->foreign('product_category')
                 ->references('id')
                 ->on('product_categories');
-            $table->integer('store_id')->unsigned();
+            $table->integer('store_id')->unsigned()->nullable();
             $table->foreign('store_id')
                 ->references('id')
                 ->on('stores');

@@ -162,6 +162,8 @@
     <script src="{{ URL::asset('js/app.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/iCheck.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/select2.js') }}"></script>
+    <script src="{{ URL::asset('js/plugins/form-validation/form-validation.js') }}"></script>
+    <script src="{{ URL::asset('js/plugins/form-validation/form-validation-framework.js') }}"></script>
 
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
@@ -194,6 +196,20 @@
                 checkboxClass: 'icheckbox_flat-green',
                 radioClass: 'iradio_flat-green'
             });
+
+//            $('body').find('form').attr("class", "enable-form-validation").formValidation({
+//                framework: 'bootstrap',
+//                excluded: [':disabled', ':hidden', ':not(:visible)'],
+//                icon: {
+//                    valid: 'glyphicon glyphicon-ok',
+//                    invalid: 'glyphicon glyphicon-remove',
+//                    validating: 'glyphicon glyphicon-refresh'
+//                },
+//                live: 'enabled',
+//                message: 'This value is not valid',
+//                trigger: "blur keyup",
+//
+//            })
 
         });
     </script>

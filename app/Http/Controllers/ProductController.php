@@ -7,10 +7,12 @@ use App\DataTables\ProductDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Repositories\ProductRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -37,7 +39,7 @@ class ProductController extends AppBaseController
     {
         return $productDataTable->render('products.index',[
             'parent_categories'=>ProductCategory::where('parent_category','=',null)->get(),
-            'categories'=>ProductCategory::where('store_id','=',Auth::user()->store_id)->get()
+            'categories'=>ProductCategory::all()/*where('store_id','=',Auth::user()->store_id)->get()*/
         ]);
     }
 
@@ -57,6 +59,20 @@ class ProductController extends AppBaseController
                      return $cat;
                  })
              ->make(true);
+    }
+
+    public function getProducts(){
+        $products = Product::all();
+        return DataTables::of($products)
+            ->addColumn('action', 'products.datatables_actions')
+            ->editColumn('product_category',function(Product $product){
+                if($product->product_category == null){
+                    $cat = "No Category";
+                }else{
+                    $cat = ProductCategory::find($product->product_category)->category_name;
+                }
+                return $cat;
+            })->make(true);
     }
 
     /**
@@ -79,8 +95,14 @@ class ProductController extends AppBaseController
     public function store(CreateProductRequest $request)
     {
         $input = $request->all();
+        $input["store_id"] = Auth::user()->store_id;
+        $input["created_by"] = Auth::id();
 
+        try{
         $product = $this->productRepository->create($input);
+        } catch (QueryException $e){
+
+        }
 
         Flash::success('Product saved successfully.');
 
@@ -104,7 +126,8 @@ class ProductController extends AppBaseController
             return redirect(route('products.index'));
         }
 
-        return view('products.show')->with('product', $product);
+//        return view('products.show')->with('product', $product);
+        return response()->json($product);
     }
 
     /**
