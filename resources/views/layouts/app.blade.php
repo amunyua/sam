@@ -39,12 +39,13 @@
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <!-- Navbar Right Menu -->
+
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" id="logout-btn" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
                                 <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/>
@@ -78,6 +79,7 @@
                                 </li>
                             </ul>
                         </li>
+
                     </ul>
                 </div>
             </nav>
@@ -172,6 +174,9 @@
 @stack('js')
     <script>
         $(document).ready(function(){
+            $(document).on('click','#logout-btn',function () {
+                $('li.user-menu').addClass('open');
+            });
             $("body").find(".active.open").closest('li.treeview').addClass('active').find("ul").removeAttr("style");
 
             $("body").find(".select2").attr('style','width:100%').select2();

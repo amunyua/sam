@@ -113,13 +113,13 @@ class MenuSeeder extends Seeder
         $product->save();
         $product_id = $product->id;
 
-        //product categories
+        /*//product categories
         $str_r = Route::where('route_name', 'Product Categories')->first();
         $product_cat = new Menu();
         $product_cat->route_id = $str_r->id;
         $product_cat->parent_menu = $product_id;
         $product_cat->sequence = 1;
-        $product_cat->save();
+        $product_cat->save();*/
 
         //products
         //product categories

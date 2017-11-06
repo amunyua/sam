@@ -38,7 +38,7 @@
                         @include('products.product-tab')
                     </div>
                     <div class="tab-pane" id="settings">
-
+                        @include('products.menu')
                     </div>
                     <!-- /.tab-pane -->
                 </div>
