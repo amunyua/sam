@@ -38,3 +38,6 @@ Route::resource('productCategories', 'ProductCategoryController');
 Route::resource('products', 'ProductController');
 Route::get('/getProductCats','ProductController@getProductCats');
 Route::get('/getProducts','ProductController@getProducts');
+Route::get('/getPMenus','ProductController@getProductMenus');
+
+Route::resource('productMenus', 'ProductMenuController');

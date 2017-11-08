@@ -55,6 +55,35 @@ $(function () {
         order: [[0, 'desc']]
     });
 
+    var pMenus = $('#product-menus-tbl').DataTable({
+        destroy:true,
+        dom: 'Bfrtip',
+        processing: true,
+        serverSide: true,
+//                    order: [[0, 'desc']],
+        buttons: [
+//                        'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
+        ],
+        ajax: ({
+            beforeSend:function(){
+                // $("#p-menus-overlay").show();
+            },
+            url:$("#p-menu-dt").val(),
+            complete:function(){
+                $("#p-menus-overlay").fadeOut();
+            }
+        }),
+        columns: [
+            {data: 'product_id', name: 'product_id'},
+            {data: 'description', name: 'description'},
+            {data: 'uom', name: 'uom'},
+            {data: 'price', name: 'price'},
+//                        {data: 'created_at', name: 'posts.created_at', width: '120px'},
+//                        {data: 'updated_at', name: 'posts.updated_at', width: '120px'},
+        ],
+        order: [[0, 'desc']]
+    });
+
 
     $(document).on("click",".edit-p-btn",function () {
         var action = $(this).attr("hint");
@@ -92,4 +121,10 @@ $(function () {
         // alert(action);
         $(document).find("form#delete-p-form").removeAttr("action").attr("action",action);
     });
+
+
+});
+
+var menuTab = new Vue({
+    el:'#menu-tab'
 });

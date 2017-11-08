@@ -9,7 +9,9 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\ProductMenu;
 use App\Repositories\ProductRepository;
+use App\Uom;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Database\QueryException;
@@ -38,8 +40,10 @@ class ProductController extends AppBaseController
     public function index(ProductDataTable $productDataTable)
     {
         return $productDataTable->render('products.index',[
+            'products'=>Product::where('store_id','=',Auth::user()->store_id)->get() ,
             'parent_categories'=>ProductCategory::where('parent_category','=',null)->get(),
-            'categories'=>ProductCategory::all()/*where('store_id','=',Auth::user()->store_id)->get()*/
+            'categories'=>ProductCategory::all()/*where('store_id','=',Auth::user()->store_id)->get()*/,
+            'uoms'=>Uom::all()
         ]);
     }
 
@@ -73,6 +77,12 @@ class ProductController extends AppBaseController
                 }
                 return $cat;
             })->make(true);
+    }
+
+    public function getProductMenus(){
+        $pMenus= ProductMenu::all();
+        return DataTables::of($pMenus)
+            ->make(true);
     }
 
     /**
