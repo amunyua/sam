@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateProductMenuRequest;
 use App\Repositories\ProductMenuRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class ProductMenuController extends AppBaseController
@@ -51,13 +53,22 @@ class ProductMenuController extends AppBaseController
      */
     public function store(CreateProductMenuRequest $request)
     {
+        $status=[];
         $input = $request->all();
+        $input["created_by"]= Auth::id();
+        $input["store_id"]= Auth::user()->store_id;
+        try{
+            $productMenu = $this->productMenuRepository->create($input);
+            $status['status'] = "success";
+            $status['message'] = "Item has been added";
+        }catch (QueryException $exception){
+            $status['status'] = 'failed';
+            $status["message"] = "Something went wrong";
+        }
+        return response()->json($status);
+//        Flash::success('Product Menu saved successfully.');
+//        return redirect(route('productMenus.index'));
 
-        $productMenu = $this->productMenuRepository->create($input);
-
-        Flash::success('Product Menu saved successfully.');
-
-        return redirect(route('productMenus.index'));
     }
 
     /**

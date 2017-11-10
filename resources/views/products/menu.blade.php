@@ -11,8 +11,8 @@
                                 <thead>
                                 <tr>
                                     <th>Product</th>
-                                    <th>Unit of measure</th>
                                     <th>Description</th>
+                                    <th>Unit of measure</th>
                                     <th>Price</th>
                                 </tr>
                                 </thead>
@@ -45,7 +45,7 @@
 </div>
 </div>
 
-<div class="modal fade" id="create-p-menu-modal" role="dialog">
+<div class="modal fade" id="create-p-menu-modal" role="dialog" data-backdrop="false">
     {{--        {!! Form::open(['route' => 'productCategories.store','id'=>'create-pcat-form']) !!}--}}
     <form  action="{{ route('productMenus.store') }}" method="post" id="create-menu-form" >
         {{ csrf_field() }}

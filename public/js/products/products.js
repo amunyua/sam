@@ -54,12 +54,13 @@ $(function () {
         ],
         order: [[0, 'desc']]
     });
-
+function pmenuDatatable() {
     var pMenus = $('#product-menus-tbl').DataTable({
         destroy:true,
         dom: 'Bfrtip',
         processing: true,
         serverSide: true,
+        ordering:false,
 //                    order: [[0, 'desc']],
         buttons: [
 //                        'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
@@ -81,8 +82,11 @@ $(function () {
 //                        {data: 'created_at', name: 'posts.created_at', width: '120px'},
 //                        {data: 'updated_at', name: 'posts.updated_at', width: '120px'},
         ],
-        order: [[0, 'desc']]
+        // order: [[0, 'desc']]
     });
+}
+    pmenuDatatable();
+
 
 
     $(document).on("click",".edit-p-btn",function () {
@@ -124,7 +128,57 @@ $(function () {
 
 
 });
+$("#create-menu-form").on('submit', function(e){
+    e.preventDefault();
+    var action = $(this).attr('action');
+        $(".close").click();
+    $.ajax({
+        url: action,
+        type:"POST",
+        dataType:"json",
+        beforeSend: function(){
+            $("#p-menus-overlay").show();
+        },
+        data:$(this).serialize(),
+        success: function(data){
+            if(data.status == "success"){
+                toastr.success(data.message,"Success!");
 
-var menuTab = new Vue({
-    el:'#menu-tab'
+            }else{
+                toastr.error(data.message,"Failed!")
+            }
+        },
+        complete: function () {
+            $('#product-menus-tbl').DataTable({
+                destroy:true,
+                dom: 'Bfrtip',
+                processing: true,
+                serverSide: true,
+                ordering: false,
+//                    order: [[0, 'desc']],
+                buttons: [
+//                        'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
+                ],
+                ajax: ({
+                    beforeSend:function(){
+                        // $("#p-menus-overlay").show();
+                    },
+                    url:$("#p-menu-dt").val(),
+                    complete:function(){
+                        // $("#p-menus-overlay").fadeOut();
+                    }
+                }),
+                columns: [
+                    {data: 'product_id', name: 'product_id'},
+                    {data: 'description', name: 'description'},
+                    {data: 'uom', name: 'uom'},
+                    {data: 'price', name: 'price'},
+//                        {data: 'created_at', name: 'posts.created_at', width: '120px'},
+//                        {data: 'updated_at', name: 'posts.updated_at', width: '120px'},
+                ],
+                // order: [[0, 'desc']]
+            });
+            $("#p-menus-overlay").fadeOut();
+        }
+    })
 });

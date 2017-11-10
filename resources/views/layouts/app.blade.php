@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/_all-skins.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/plugins/icheck.css') }}">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('css/plugins/select2.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('toastr/toastr.css') }}">
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">--}}
 
     <!-- Ionicons -->
@@ -164,6 +165,7 @@
     <script src="{{ URL::asset('js/app.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/iCheck.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/select2.js') }}"></script>
+    <script src="{{ URL::asset('toastr/toastr.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/form-validation/form-validation.js') }}"></script>
     <script src="{{ URL::asset('js/plugins/form-validation/form-validation-framework.js') }}"></script>
 

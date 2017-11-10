@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+//use Eloquent as Model;
 
+use Illuminate\Database\Eloquent\Model;
 /**
  * Class ProductMenu
  * @package App\Models
@@ -66,7 +67,9 @@ class ProductMenu extends Model
      * @var array
      */
     public static $rules = [
-        
+        'product_id'=>'required',
+        'price'=>'required',
+
     ];
 
     /**
@@ -88,8 +91,8 @@ class ProductMenu extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function uom()
+    /*public function uom()
     {
         return $this->belongsTo(\App\Models\Uom::class);
-    }
+    }*/
 }

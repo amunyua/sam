@@ -47,6 +47,9 @@
                 <!-- /.tab-content -->
             </div>
             <!-- /.nav-tabs-custom -->
+                <div class="overlay" style="display: none" id="p-overlay">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>
             </div>
         </div>
 

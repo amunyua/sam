@@ -80,7 +80,7 @@ class ProductController extends AppBaseController
     }
 
     public function getProductMenus(){
-        $pMenus= ProductMenu::all();
+        $pMenus= ProductMenu::orderBy('id', 'DESC')->get();
         return DataTables::of($pMenus)
             ->make(true);
     }
