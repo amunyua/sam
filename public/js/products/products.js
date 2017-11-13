@@ -216,6 +216,7 @@ $(function () {
             // alert(id);
 
             $("#e-id").val(id);
+
             var route = btn.attr('route')+'/'+id;
             // alert(route);
             $.ajax({
