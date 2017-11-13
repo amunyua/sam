@@ -27,7 +27,7 @@
                         <div class="box box-solid box-primary">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <h5><a href="#create-p-menu-modal" data-toggle="modal" class="btn btn-info btn-block">Add Item</a></h5>
+                                    <h5><a href="#create-p-menu-modal" id="create-pm-modal" class="btn btn-info btn-block">Add Item</a></h5>
                                 </div>
                                 <div class="form-group">
                                     <h5><a href="#edit-p-menu-modal" route="{{ url('getPm') }}" id="menu-e-btn" class="btn btn-success btn-block">Edit Item</a></h5>

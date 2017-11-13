@@ -151,7 +151,8 @@ $(function () {
     $("#create-menu-form").on('submit', function(e){
         e.preventDefault();
         var action = $(this).attr('action');
-        $(".close").click();
+        // $(".close").click();
+        $("#create-p-menu-modal").modal("hide");
         $.ajax({
             url: action,
             type:"POST",
@@ -208,6 +209,10 @@ $(function () {
         })
     });
 
+    $(document).on('click','#create-pm-modal',function () {
+        $("#create-p-menu-modal").modal();
+    });
+
     $(document).on('click',"#menu-e-btn",function (e) {
         var btn = $(this);
         var tr = $('#product-menus-tbl > tbody > tr.selected');
@@ -233,7 +238,12 @@ $(function () {
                     }
                 }
             });
-            $("#edit-p-menu-modal").modal();
+            if(id >0){
+                $("#edit-p-menu-modal").modal();
+            }else{
+                alert('There is no data to edit')
+            }
+
         }else{
             alert("You must select at least one row to edit");
         }
@@ -309,7 +319,11 @@ $(function () {
             // alert(id);
 
             $("#d-id").val(id);
-            $("#delete-p-menu-modal").modal();
+            if(id >0){
+                $("#delete-p-menu-modal").modal();
+            }else{
+                alert('There is no data to delete')
+            }
         }else{
             alert("You must select at least one row to delete");
         }

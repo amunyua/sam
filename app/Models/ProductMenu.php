@@ -42,7 +42,8 @@ class ProductMenu extends Model
         'price',
         'status',
         'created_by',
-        'store_id'
+        'store_id',
+        'product_menu_cat'
     ];
 
     /**
@@ -58,7 +59,8 @@ class ProductMenu extends Model
         'price' => 'float',
         'status' => 'boolean',
         'created_by' => 'integer',
-        'store_id' => 'integer'
+        'store_id' => 'integer',
+        'product_menu_cat' => 'integer'
     ];
 
     /**
