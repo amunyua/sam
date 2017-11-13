@@ -151,6 +151,13 @@ class RouteSeeder extends Seeder
         $products->save();
         $products->roles()->attach($admin);
 
+        $products = new Route();
+        $products->route_name = 'UOMs';
+        $products->url = 'uOMS';
+        $products->parent_route = $product_id;
+        $products->save();
+        $products->roles()->attach($admin);
+
 //        $role = new Route();
 //        $role->route_name = 'Delete User';
 //        $role->url = 'delete-user/{id}';

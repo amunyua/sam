@@ -65,7 +65,7 @@ class ProductMenuController extends AppBaseController
             $status['message'] = "Item has been added";
         }catch (QueryException $exception){
             $status['status'] = 'failed';
-            $status["message"] = "Something went wrong".$exception->errorInfo[2];
+            $status["message"] = "Something went wrong ".$exception->errorInfo[2];
         }
         return response()->json($status);
 //        Flash::success('Product Menu saved successfully.');

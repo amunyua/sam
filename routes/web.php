@@ -42,3 +42,7 @@ Route::get('/getPMenus','ProductController@getProductMenus');
 
 Route::resource('productMenus', 'ProductMenuController');
 Route::get('getPm/{id}','ProductMenuController@show');
+
+
+
+Route::resource('uOMS', 'UOMController');

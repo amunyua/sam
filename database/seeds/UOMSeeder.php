@@ -11,9 +11,11 @@ class UOMSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('uoms')->delete();
+//        \Illuminate\Support\Facades\DB::table('uoms')->delete();
         $uom = new \App\Uom();
-        $uom->name = "Glass";
+        $uom->name = "250ml";
+        $uom->created_by = \App\Models\User::all()->first()->id;
+        $uom->store_id = \App\Models\Store::first()->id;
         $uom->save();
     }
 }

@@ -130,6 +130,13 @@ class MenuSeeder extends Seeder
         $product_cat->sequence = 2;
         $product_cat->save();
 
+        $str_r = Route::where('route_name', 'UOMs')->first();
+        $product_cat = new Menu();
+        $product_cat->route_id = $str_r->id;
+        $product_cat->parent_menu = $product_id;
+        $product_cat->sequence = 1;
+        $product_cat->save();
+
 
     }
 }
