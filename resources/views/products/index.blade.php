@@ -10,6 +10,7 @@
 
         }
     </style>
+
     @endsection
 @section('content')
 
@@ -56,6 +57,7 @@
 @endsection
 
 @push('js')
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('js/products/products.js') }}"></script>
     @endpush
 

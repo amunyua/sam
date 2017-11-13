@@ -82,13 +82,14 @@ class ProductMenuController extends AppBaseController
     {
         $productMenu = $this->productMenuRepository->findWithoutFail($id);
 
-        if (empty($productMenu)) {
-            Flash::error('Product Menu not found');
+//        if (empty($productMenu)) {
+//            Flash::error('Product Menu not found');
+//
+//            return redirect(route('productMenus.index'));
+//        }
+        return response()->json($productMenu);
 
-            return redirect(route('productMenus.index'));
-        }
-
-        return view('product_menus.show')->with('productMenu', $productMenu);
+//        return view('product_menus.show')->with('productMenu', $productMenu);
     }
 
     /**
@@ -121,19 +122,21 @@ class ProductMenuController extends AppBaseController
      */
     public function update($id, UpdateProductMenuRequest $request)
     {
+        $state = [];
         $productMenu = $this->productMenuRepository->findWithoutFail($id);
-
-        if (empty($productMenu)) {
-            Flash::error('Product Menu not found');
-
-            return redirect(route('productMenus.index'));
+        try{
+            $productMenu = $this->productMenuRepository->update($request->all(), $id);
+           $state["message"] = "Menu item has been updated";
+            $state["status"]= "success";
+        }catch (QueryException $e){
+            $state["message"] = "Something went wrong";
+            $state["status"]= "failed";
         }
 
-        $productMenu = $this->productMenuRepository->update($request->all(), $id);
-
-        Flash::success('Product Menu updated successfully.');
-
-        return redirect(route('productMenus.index'));
+//        Flash::success('Product Menu updated successfully.');
+//
+//        return redirect(route('productMenus.index'));
+        return response()->json($state);
     }
 
     /**
@@ -145,18 +148,16 @@ class ProductMenuController extends AppBaseController
      */
     public function destroy($id)
     {
+        $state = [];
         $productMenu = $this->productMenuRepository->findWithoutFail($id);
-
-        if (empty($productMenu)) {
-            Flash::error('Product Menu not found');
-
-            return redirect(route('productMenus.index'));
+        try{
+            $this->productMenuRepository->delete($id);
+            $state['message'] = "The item has been deleted";
+            $state['status'] = "success";
+        }catch (QueryException $exception){
+            $state['message'] = "Something went wrong";
+            $state['status'] = 'failed';
         }
-
-        $this->productMenuRepository->delete($id);
-
-        Flash::success('Product Menu deleted successfully.');
-
-        return redirect(route('productMenus.index'));
+        return response()->json($state);
     }
 }

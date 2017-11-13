@@ -16,6 +16,7 @@ use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Response;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -80,8 +81,23 @@ class ProductController extends AppBaseController
     }
 
     public function getProductMenus(){
-        $pMenus= ProductMenu::orderBy('id', 'DESC')->get();
+//        $pMenus= ProductMenu::orderBy('id', 'DESC')->get();
+        $pMenus= ProductMenu::where('created_by',Auth::id())
+            ->orWhere('store_id',Auth::user()->store_id)
+            ->orderByDesc('id')
+            ->get();
         return DataTables::of($pMenus)
+            ->editColumn('product_id', function (ProductMenu $pmenu){
+                $p = Product::find($pmenu->product_id)->name;
+                return $p;
+            })
+            ->editColumn('uom',function(ProductMenu $pmenu){
+                if($pmenu->uom == null){
+                    return "";
+                }else{
+                    return $uom = Uom::find($pmenu->uom)->name;
+                }
+            })
             ->make(true);
     }
 

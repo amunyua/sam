@@ -54,7 +54,6 @@ $(function () {
         ],
         order: [[0, 'desc']]
     });
-function pmenuDatatable() {
     var pMenus = $('#product-menus-tbl').DataTable({
         destroy:true,
         dom: 'Bfrtip',
@@ -75,7 +74,12 @@ function pmenuDatatable() {
             }
         }),
         columns: [
-            {data: 'product_id', name: 'product_id'},
+            // {data: 'product_id', name: 'product_id'},
+            {
+                mRender: function (data, type, row) {
+                    return '<input type="hidden" class="m-id" value="'+ row.id+'">'+ row.product_id;
+                }
+            },
             {data: 'description', name: 'description'},
             {data: 'uom', name: 'uom'},
             {data: 'price', name: 'price'},
@@ -84,8 +88,7 @@ function pmenuDatatable() {
         ],
         // order: [[0, 'desc']]
     });
-}
-    pmenuDatatable();
+
 
 
 
@@ -127,58 +130,248 @@ function pmenuDatatable() {
     });
 
 
-});
-$("#create-menu-form").on('submit', function(e){
-    e.preventDefault();
-    var action = $(this).attr('action');
-        $(".close").click();
-    $.ajax({
-        url: action,
-        type:"POST",
-        dataType:"json",
-        beforeSend: function(){
-            $("#p-menus-overlay").show();
-        },
-        data:$(this).serialize(),
-        success: function(data){
-            if(data.status == "success"){
-                toastr.success(data.message,"Success!");
-
-            }else{
-                toastr.error(data.message,"Failed!")
+    // $("#product-menus-tbl tbody").on('click','tr',function(){
+    //     $(this).toggleClass('selected');
+    // })
+    $('#product-menus-tbl > tbody').on('click', 'tr', function(event){
+        var edit_id = $(this).find('.m-id').val();
+        // alert(edit_id);
+        if(event.ctrlKey) {
+            $(this).toggleClass('selected');
+        } else {
+            if ( $(this).hasClass('selected') ) {
+                $('#product-menus-tbl > tbody > tr').removeClass('selected');
+                $("menu-e-btn").removeAttr('e-id');
+            } else {
+                $('#product-menus-tbl > tbody > tr').removeClass('selected');
+                $(this).toggleClass('selected');
             }
-        },
-        complete: function () {
-            $('#product-menus-tbl').DataTable({
-                destroy:true,
-                dom: 'Bfrtip',
-                processing: true,
-                serverSide: true,
-                ordering: false,
+        }
+    });
+    $("#create-menu-form").on('submit', function(e){
+        e.preventDefault();
+        var action = $(this).attr('action');
+        $(".close").click();
+        $.ajax({
+            url: action,
+            type:"POST",
+            dataType:"json",
+            beforeSend: function(){
+                $("#p-menus-overlay").show();
+            },
+            data:$(this).serialize(),
+            success: function(data){
+                if(data.status == "success"){
+                    toastr.success(data.message,"Success!");
+
+                }else{
+                    toastr.error(data.message,"Failed!")
+                }
+            },
+            complete: function () {
+                $('#product-menus-tbl').DataTable({
+                    destroy:true,
+                    dom: 'Bfrtip',
+                    processing: true,
+                    serverSide: true,
+                    ordering: false,
 //                    order: [[0, 'desc']],
-                buttons: [
+                    buttons: [
 //                        'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
-                ],
-                ajax: ({
-                    beforeSend:function(){
-                        // $("#p-menus-overlay").show();
-                    },
-                    url:$("#p-menu-dt").val(),
-                    complete:function(){
-                        // $("#p-menus-overlay").fadeOut();
-                    }
-                }),
-                columns: [
-                    {data: 'product_id', name: 'product_id'},
-                    {data: 'description', name: 'description'},
-                    {data: 'uom', name: 'uom'},
-                    {data: 'price', name: 'price'},
+                    ],
+                    ajax: ({
+                        beforeSend:function(){
+                            // $("#p-menus-overlay").show();
+                        },
+                        url:$("#p-menu-dt").val(),
+                        complete:function(){
+                            // $("#p-menus-overlay").fadeOut();
+                        }
+                    }),
+                    columns: [
+                        // {data: 'product_id', name: 'product_id'},
+                        {
+                            mRender: function (data, type, row) {
+                                return '<input type="hidden" class="m-id" value="'+ row.id+'">'+ row.product_id;
+                            }
+                        },
+                        {data: 'description', name: 'description'},
+                        {data: 'uom', name: 'uom'},
+                        {data: 'price', name: 'price'},
 //                        {data: 'created_at', name: 'posts.created_at', width: '120px'},
 //                        {data: 'updated_at', name: 'posts.updated_at', width: '120px'},
-                ],
-                // order: [[0, 'desc']]
+                    ],
+                    // order: [[0, 'desc']]
+                });
+                $("#p-menus-overlay").fadeOut();
+            }
+        })
+    });
+
+    $(document).on('click',"#menu-e-btn",function (e) {
+        var btn = $(this);
+        var tr = $('#product-menus-tbl > tbody > tr.selected');
+        if(tr.length >0){
+            var id = tr.find('.m-id').val();
+            // alert(id);
+
+            $("#e-id").val(id);
+            var route = btn.attr('route')+'/'+id;
+            // alert(route);
+            $.ajax({
+                url:route,
+                type:"GET",
+                dataType: 'json',
+                success: function(data){
+                    if(data){
+                        $("#product_id").val(data["product_id"]).change();
+                        $("#description").val(data["description"]);
+                        $("#uom").val(data["uom"]).change();
+                        $("#price").val(data["price"]);
+
+                    }
+                }
             });
-            $("#p-menus-overlay").fadeOut();
+            $("#edit-p-menu-modal").modal();
+        }else{
+            alert("You must select at least one row to edit");
         }
+    });
+
+    $(document).on('submit',"#edit-menu-form",function(e){
+        e.preventDefault();
+        var id = $("#e-id").val();
+        var action = $(this).attr('action')+'/'+id;
+        $("#edit-p-menu-modal").modal('hide');
+        $.ajax({
+            url: action,
+            type:'POST',
+            dataType: "json",
+            beforeSend: function(){
+                $("#p-menus-overlay").show();
+            },
+            data: $("#edit-menu-form").serialize(),
+            success: function(data){
+                if(data.status == 'success'){
+                    toastr.success(data.message,"Success!");
+
+                }else{
+                    toastr.error(data.message,"Failed!");
+                }
+            },
+            complete: function () {
+                // var dt = new pMenus;
+                $('#product-menus-tbl').DataTable({
+                    destroy:true,
+                    dom: 'Bfrtip',
+                    processing: true,
+                    serverSide: true,
+                    ordering: false,
+//                    order: [[0, 'desc']],
+                    buttons: [
+//                        'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
+                    ],
+                    ajax: ({
+                        beforeSend:function(){
+                            // $("#p-menus-overlay").show();
+                        },
+                        url:$("#p-menu-dt").val(),
+                        complete:function(){
+                            // $("#p-menus-overlay").fadeOut();
+                        }
+                    }),
+                    columns: [
+                        // {data: 'product_id', name: 'product_id'},
+                        {
+                            mRender: function (data, type, row) {
+                                return '<input type="hidden" class="m-id" value="'+ row.id+'">'+ row.product_id;
+                            }
+                        },
+                        {data: 'description', name: 'description'},
+                        {data: 'uom', name: 'uom'},
+                        {data: 'price', name: 'price'},
+//                        {data: 'created_at', name: 'posts.created_at', width: '120px'},
+//                        {data: 'updated_at', name: 'posts.updated_at', width: '120px'},
+                    ]
+                    // order: [[0, 'desc']]
+                });
+                $("#p-menus-overlay").fadeOut();
+            }
+        });
+    });
+
+    $(document).on('click','#delete-p-menu',function (e) {
+        var btn = $(this);
+        var tr = $('#product-menus-tbl > tbody > tr.selected');
+        if(tr.length >0){
+            var id = tr.find('.m-id').val();
+            // alert(id);
+
+            $("#d-id").val(id);
+            $("#delete-p-menu-modal").modal();
+        }else{
+            alert("You must select at least one row to delete");
+        }
+    });
+    $(document).on('submit','#delete-p-menu-form',function (e) {
+        e.preventDefault();
+        $("#delete-p-menu-modal").modal("hide");
+        var id = $("#d-id").val();
+        var action = $(this).attr('action')+'/'+id;
+        $.ajax({
+            url:action,
+            type:"POST",
+            dataType:"json",
+            beforeSend: function(){
+                $("#p-menus-overlay").show();
+            },
+            data: $("#delete-p-menu-form").serialize(),
+            success: function(data){
+                if(data.status == 'success'){
+                    toastr.success(data.message,"Success!");
+
+                }else{
+                    toastr.error(data.message,"Failed!");
+                }
+            },complete: function () {
+                // var dt = new pMenus;
+                $('#product-menus-tbl').DataTable({
+                    destroy:true,
+                    dom: 'Bfrtip',
+                    processing: true,
+                    serverSide: true,
+                    ordering: false,
+//                    order: [[0, 'desc']],
+                    buttons: [
+//                        'csv', 'excel', 'pdf', 'print', 'reset', 'reload'
+                    ],
+                    ajax: ({
+                        beforeSend:function(){
+                            // $("#p-menus-overlay").show();
+                        },
+                        url:$("#p-menu-dt").val(),
+                        complete:function(){
+                            // $("#p-menus-overlay").fadeOut();
+                        }
+                    }),
+                    columns: [
+                        // {data: 'product_id', name: 'product_id'},
+                        {
+                            mRender: function (data, type, row) {
+                                return '<input type="hidden" class="m-id" value="'+ row.id+'">'+ row.product_id;
+                            }
+                        },
+                        {data: 'description', name: 'description'},
+                        {data: 'uom', name: 'uom'},
+                        {data: 'price', name: 'price'},
+//                        {data: 'created_at', name: 'posts.created_at', width: '120px'},
+//                        {data: 'updated_at', name: 'posts.updated_at', width: '120px'},
+                    ]
+                    // order: [[0, 'desc']]
+                });
+                $("#p-menus-overlay").fadeOut();
+            }
+        })
     })
 });
+
