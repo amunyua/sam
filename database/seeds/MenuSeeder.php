@@ -19,7 +19,7 @@ class MenuSeeder extends Seeder
 //        #### Dashboard
         $dashboard_route = Route::where('route_name', 'Dashboard')->first();
         $dashboard = new Menu();
-        $dashboard->fa_icon = 'fa-dashboard';
+        $dashboard->fa_icon = 'dashboard';
         $dashboard->route_id = $dashboard_route->id;
         $dashboard->sequence = 1;
         $dashboard->save();
@@ -38,7 +38,7 @@ class MenuSeeder extends Seeder
         #### user management
         $user_mngt_route = Route::where('route_name', 'User Management')->first();
         $user_mngt = new Menu();
-        $user_mngt->fa_icon = 'fa-group';
+        $user_mngt->fa_icon = 'supervisor_account';
         $user_mngt->route_id = $user_mngt_route->id;
         $user_mngt->sequence = 8;
         $user_mngt->save();
@@ -68,7 +68,7 @@ class MenuSeeder extends Seeder
         #### system
         $system_route = Route::where('route_name', 'System Settings')->first();
         $system = new Menu();
-        $system->fa_icon = 'fa-cogs';
+        $system->fa_icon = 'settings';
         $system->route_id = $system_route->id;
         $system->sequence = 9;
         $system->save();
@@ -91,7 +91,7 @@ class MenuSeeder extends Seeder
         #### Store management
         $store_route = Route::where('route_name', 'Store Management')->first();
         $store = new Menu();
-        $store->fa_icon = 'fa-home';
+        $store->fa_icon = 'gamepad';
         $store->route_id = $store_route->id;
         $store->sequence = 2;
         $store->save();
@@ -107,7 +107,7 @@ class MenuSeeder extends Seeder
         #### Product management
         $product_route = Route::where('route_name', 'Product Management')->first();
         $product = new Menu();
-        $product->fa_icon = 'fa-home';
+        $product->fa_icon = 'device_other';
         $product->route_id = $product_route->id;
         $product->sequence = 3;
         $product->save();

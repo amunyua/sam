@@ -41,7 +41,7 @@ Route::get('/getProducts','ProductController@getProducts');
 Route::get('/getPMenus','ProductController@getProductMenus');
 
 Route::resource('productMenus', 'ProductMenuController');
-Route::get('getPm/{id}','ProductMenuController@show');
+//Route::get('getPm/{id}','ProductMenuController@show');
 
 
 

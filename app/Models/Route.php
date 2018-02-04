@@ -32,7 +32,9 @@ class Route extends Model
         'route_name',
         'url',
         'route_status',
-        'parent_route'
+        'parent_route',
+        'icon',
+        'sequence'
     ];
 
     /**
@@ -44,7 +46,9 @@ class Route extends Model
         'id' => 'integer',
         'route_name' => 'string',
         'url' => 'string',
-        'route_status' => 'boolean'
+        'route_status' => 'boolean',
+        'icon'=>'string',
+        'sequence'=>'integer'
     ];
 
     /**

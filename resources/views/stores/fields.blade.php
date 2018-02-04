@@ -1,28 +1,24 @@
 <!-- Store Name Field -->
-<div class="form-group">
-    {!! Form::label('store_name', 'Store Name:') !!}
+<div class="form-group col-sm-12 label-floating  is-empty" style="margin-top: 0;">
+    {!! Form::label('store_name', 'Store Name:',['class' => 'control-label']) !!}
     {!! Form::text('store_name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Location Field -->
-<div class="form-group">
-    {!! Form::label('location', 'Location:') !!}
+<div class="form-group col-sm-12  is-empty label-floating" style="margin-top: 0;">
+    {!! Form::label('location', 'Location:',['class' => 'control-label']) !!}
+    {{--<label class="control-label">Location</label>--}}
     {!! Form::text('location', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Status Field -->
 
-<div class="form-group">
-  {!! Form::label('status', 'Status:') !!}
+<div class="form-group col-sm-12  is-empty" style="margin-top: 0;">
+  {!! Form::label('status', 'Status:',['class' => 'control-label']) !!}
   <select name="status" class="form-control select2">
-    <option value="0">Inactive</option>
     <option value="1">Active</option>
+      <option value="0">Inactive</option>
   </select>
 </div>
 
-<!-- Submit Field
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('stores.index') !!}" class="btn btn-default">Cancel</a>
-</div>
--->
+

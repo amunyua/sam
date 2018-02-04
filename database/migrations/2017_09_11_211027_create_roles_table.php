@@ -18,6 +18,7 @@ class CreateRolesTable extends Migration
             $table->string('role_code',20);
             $table->string('role_name');
             $table->boolean('role_status')->default(true);
+            $table->integer('created_by')->nullable();
             $table->timestamps();
         });
     }

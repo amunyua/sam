@@ -16,6 +16,8 @@ class CreateUomsTable extends Migration
         Schema::create('uoms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('created_by')->unsigned();
+            $table->integer('store_id')->unsigned();
             $table->timestamps();
         });
     }

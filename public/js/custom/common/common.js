@@ -28,7 +28,7 @@ $(document).on("click",".edit-common",function () {
                         e=0;
                     }
                     // alert(e);
-                    $(element).val(e);
+                    $(element).val(e).trigger('change');
                 })
             }
         }

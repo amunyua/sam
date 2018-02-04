@@ -96,7 +96,7 @@
                             <h4 class="modal-title">Delete Roles</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this Roles?</p>
+                            <p>Are you sure you want to delete this Role?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>

@@ -14,8 +14,7 @@ class UpdateUomsTable extends Migration
     public function up()
     {
         Schema::table('uoms', function (Blueprint $table) {
-            $table->integer('created_by')->unsigned();
-            $table->integer('store_id')->unsigned();
+
         });
     }
 

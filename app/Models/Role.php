@@ -70,7 +70,11 @@ class Role extends Model
         return $this->hasMany(\App\Models\RoleUser::class);
     }
 
-    public function routes(){
-        return $this->belongsToMany("App\Models\Route");
+//    public function routes(){
+//        return $this->belongsToMany("App\Models\Route");
+//    }
+
+    public function routes() {
+        return $this->belongsToMany(\App\Models\Route::class);
     }
 }

@@ -18,7 +18,16 @@ class StoreDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'stores.datatables_actions');
+        return $dataTable
+            ->editColumn('status',function(Store $store){
+                if($store->status){
+                    return '<label class="label label-success">Active</label>';
+                }else{
+                    return '<label class="label label-warning">Inactive</label>';
+                }
+            })
+            ->rawColumns(['status','action'])
+            ->addColumn('action', 'stores.datatables_actions');
     }
 
     /**

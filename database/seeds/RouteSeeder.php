@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Models\Route;
 use App\Models\Role;
+//use Illuminate\Support\Facades\Route;
 
 class RouteSeeder extends Seeder
 {
@@ -11,24 +12,45 @@ class RouteSeeder extends Seeder
      *
      * @return void
      */
+    const SystemAdmin = "SYS_ADMIN";
     public function run()
     {
-        DB::table('routes')->delete();
+        \Illuminate\Support\Facades\DB::table('routes')->delete();
+       /* $collection = Route::getRoutes();
+//        \App\Models\RoleRoute::delete();
+//        \App\Route::truncate();
+
+        foreach ($collection as $route) {
+            $action = $route->getAction();
+
+            if ($action['prefix'] != 'api') {
+
+                if (!is_object($action['uses'])) {
+
+
+                    \Illuminate\Support\Facades\DB::transaction(function() use($route, $action) {
+
+                        $sys_route = SystemRoute::create(['url' => $route->uri, 'action' => $action['uses']]);
+
+                        $role = Role::where('role_code', self::SystemAdmin)->first();
+
+                        $sys_route->roles()->attach($role);
+
+                    });
+
+                }
+
+            }
+        }*/
 
         $admin = Role::where('role_code', 'SYS_ADMIN')->first();
         #### Dashboard
         $dashboard = new Route();
         $dashboard->route_name = 'Dashboard';
+        $dashboard->icon = 'dashboard';
+        $dashboard->sequence = 1;
         $dashboard->save();
         $dashboard_id = $dashboard->id;
-
-//        $home = new Route();
-//        $home->route_name = 'Home';
-//        $home->url = 'home';
-//        $home->parent_route = $dashboard_id;
-//        $home->save();
-//        $home->roles()->attach($admin);
-
 
         #### Dashboard child
         $analytics_dash = new Route();
@@ -39,86 +61,12 @@ class RouteSeeder extends Seeder
         $analytics_dash->roles()->attach($admin);
 
 
-//        #### system
-        $system = new Route();
-        $system->route_name = 'System Settings';
-        $system->save();
-        $system_id = $system->id;
-
-        #### system children
-        $routes = new Route();
-        $routes->route_name = 'System Routes';
-        $routes->url = 'routes';
-        $routes->parent_route = $system_id;
-        $routes->save();
-        $routes->roles()->attach($admin);
-//
-//        $routes = new Route();
-//        $routes->route_name = 'Load System Routes';
-//        $routes->url = 'load-routes';
-//        $routes->parent_route = $system_id;
-//        $routes->save();
-//        $routes->roles()->attach($admin);
-//
-//        $menu = new Route();
-//        $menu->route_name = 'System Menu';
-//        $menu->url = 'menu';
-//        $menu->parent_route = $system_id;
-//        $menu->save();
-//        $menu->roles()->attach($admin);
-//
-//        $system_config = new Route();
-//        $system_config->route_name = 'System Configuration';
-//        $system_config->url = 'sys-config';
-//        $system_config->parent_route = $system_id;
-//        $system_config->save();
-//        $system_config->roles()->attach($admin);
-//
-//        $system_config = new Route();
-//        $system_config->route_name = 'System Settings';
-//        $system_config->url = 'load-config';
-//        $system_config->parent_route = $system_id;
-//        $system_config->save();
-//        $system_config->roles()->attach($admin);
-//
-//        $system_config = new Route();
-//        $system_config->route_name = 'Get Route Data';
-//        $system_config->url = 'get-route/{route_id}';
-//        $system_config->parent_route = $system_id;
-//        $system_config->save();
-//        $system_config->roles()->attach($admin);
-//
-//        $system_config = new Route();
-//        $system_config->route_name = 'Update Route';
-//        $system_config->url = 'edit-route';
-//        $system_config->parent_route = $system_id;
-//        $system_config->save();
-//        $system_config->roles()->attach($admin);
-//
-        #### user management
-        $user_mngt = new Route();
-        $user_mngt->route_name = 'User Management';
-        $user_mngt->save();
-        $user_mngt_id = $user_mngt->id;
-//
-        #### user management children
-        $all_user = new Route();
-        $all_user->route_name = 'System Users';
-        $all_user->url = 'users';
-        $all_user->parent_route = $user_mngt_id;
-        $all_user->save();
-        $all_user->roles()->attach($admin);
-
-        $roles = new Route();
-        $roles->route_name = 'User Roles';
-        $roles->url = 'roles';
-        $roles->parent_route = $user_mngt_id;
-        $roles->save();
-        $roles->roles()->attach($admin);
 
         #### Store management
         $store_management = new Route();
         $store_management->route_name = 'Store Management';
+        $store_management->icon = 'home';
+        $store_management->sequence = 2;
         $store_management->save();
         $store_m_id = $store_management->id;
 
@@ -132,6 +80,8 @@ class RouteSeeder extends Seeder
         #### Product management
         $products = new Route();
         $products->route_name = 'Product Management';
+        $products->icon = 'group_work';
+        $products->sequence = 3;
         $products->save();
         $product_id = $products->id;
 //
@@ -157,6 +107,46 @@ class RouteSeeder extends Seeder
         $products->parent_route = $product_id;
         $products->save();
         $products->roles()->attach($admin);
+
+
+        #### user management
+        $user_mngt = new Route();
+        $user_mngt->route_name = 'User Management';
+        $user_mngt->icon = 'supervisor_account';
+        $dashboard->sequence = 6;
+        $user_mngt->save();
+        $user_mngt_id = $user_mngt->id;
+//
+        #### user management children
+        $all_user = new Route();
+        $all_user->route_name = 'System Users';
+        $all_user->url = 'users';
+        $all_user->parent_route = $user_mngt_id;
+        $all_user->save();
+        $all_user->roles()->attach($admin);
+
+        $roles = new Route();
+        $roles->route_name = 'User Roles';
+        $roles->url = 'roles';
+        $roles->parent_route = $user_mngt_id;
+        $roles->save();
+        $roles->roles()->attach($admin);
+
+//        #### system
+        $system = new Route();
+        $system->route_name = 'System Settings';
+        $system->icon = 'settings';
+        $system->sequence = 7;
+        $system->save();
+        $system_id = $system->id;
+
+        #### system children
+        $routes = new Route();
+        $routes->route_name = 'System Routes';
+        $routes->url = 'routes';
+        $routes->parent_route = $system_id;
+        $routes->save();
+        $routes->roles()->attach($admin);
 
 //        $role = new Route();
 //        $role->route_name = 'Delete User';
