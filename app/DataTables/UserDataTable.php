@@ -45,7 +45,12 @@ class UserDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return $model->newQuery()->with('roles');
+        return User::query()
+            ->select('*')
+            ->leftJoin('stores','stores.id','=','users.store_id')
+            ->leftJoin('role_user','role_user.user_id','=','users.id')
+            ->leftJoin('roles','roles.id','=','role_user.role_id')
+            ;
     }
 
     /**
@@ -57,19 +62,19 @@ class UserDataTable extends DataTable
     {
         return $this->builder()
             ->columns($this->getColumns())
-            ->addColumn([
-                'defaultContent' => '',
-                'data'           => 'roles.role_name',
-                'name'           => 'roles.role_name',
-                'title'          => 'Role name',
-                'render'         => null,
-                'orderable'      => false,
-                'searchable'     => false,
-                'exportable'     => false,
-                'printable'      => false,
-                'footer'         => '',
-                'width' => '80px'
-            ])
+//            ->addColumn([
+//                'defaultContent' => '',
+//                'data'           => 'roles.role_name',
+//                'name'           => 'roles.role_name',
+//                'title'          => 'Role name',
+//                'render'         => null,
+//                'orderable'      => false,
+//                'searchable'     => true,
+//                'exportable'     => false,
+//                'printable'      => false,
+//                'footer'         => '',
+//                'width' => '80px'
+//            ])
             ->minifiedAjax()
             ->addAction(['width' => '80px'])
             ->parameters([
@@ -96,10 +101,15 @@ class UserDataTable extends DataTable
             'name',
             'email',
             'phone_number',
-            'id_number',
+            'store_name'=>[
+                'title'=>'Store',
+//                'data'=>'stores.store_name'
+            ],
+            'role_name'=>[
+                'title'=>'Role'
+            ],
             'status',
             'password_updated',
-//            'role_name'
         ];
     }
 

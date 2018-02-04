@@ -1,16 +1,16 @@
 <!-- Name Field -->
-<div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
+<div class="form-group label-floating  is-empty" style="margin-top: 2px;">
+    {!! Form::label('name', 'Name:',['class'=>'control-label']) !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Email Field -->
-<div class="form-group">
-    {!! Form::label('email', 'Email:') !!}
+<div class="form-group label-floating " style="margin-top: 2px;">
+    {!! Form::label('email', 'Email:',['class'=>'control-label']) !!}
     {!! Form::email('email', null, ['class' => 'form-control']) !!}
 </div>
 <!-- Store Id Field -->
-<div class="form-group">
+<div class="form-group  " style="margin-top: 2px;">
     {!! Form::label('role_id', 'Role:') !!}
     <select name="role_id" class="form-control select2" id="role_id">
         <option value="">select role</option>
@@ -37,21 +37,21 @@
 --}}
 
 <!-- Phone Number Field -->
-<div class="form-group">
-    {!! Form::label('phone_number', 'Phone Number:') !!}
+<div class="form-group  label-floating " style="margin-top: 2px;">
+    {!! Form::label('phone_number', 'Phone Number:',['class'=>'control-label']) !!}
     {!! Form::text('phone_number', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Id Number Field -->
-<div class="form-group">
-    {!! Form::label('id_number', 'Id Number:') !!}
+<div class="form-group  label-floating " style="margin-top: 2px;">
+    {!! Form::label('id_number', 'Id Number:',['class'=>'control-label']) !!}
     {!! Form::text('id_number', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Status Field -->
 
-<div class="form-group">
-    <label for="store_id" class="control-label">Store</label>
+<div class="form-group  " style="margin-top: 2px;">
+    <label for="store_id">Store</label>
     <select name="store_id" class="form-control select2" id="store_id">
         <option value="">Select store</option>
         @if(count($stores))
@@ -63,7 +63,7 @@
 </div>
 
 
-<div class="form-group">
+<div class="form-group  label-floating " style="margin-top: 2px;">
   {!! Form::label('status', 'Status:') !!}
   <select name="status" class="form-control select2" id='status'>
       <option value="1">Active</option>

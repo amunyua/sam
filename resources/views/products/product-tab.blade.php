@@ -1,15 +1,22 @@
-<div class="content">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-12 no-padding">
-            <div class="col-md-6">
-                <div class="box box-info box-solid" >
-                    <div class="box-header">
-                        <h3 class="box-title">Product Categories</h3>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header card-header-icon" data-background-color="rose">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">Product Categories</h4>
+                    <div class="toolbar">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-primary  pull-right btn-rose" href="#create-p-cat-modal" data-toggle="modal">Add Category</a>
+                            </div>
+                        </div>
+                        @include('flash::message')
+                        @include('adminlte-templates::common.errors')
                     </div>
-                    <div class="box-body">
-                        <h1 class="pull-right">
-                            <a class="btn btn-primary btn-sm pull-right" href="#create-p-cat-modal" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px">Add Category</a>
-                        </h1>
+                    <div class="material-datatables">
                         <input type="hidden" value="{{url('/getProductCats')}}" id="cats-dt">
                         <table class="table" id="product-categories" style="width: 100%">
                             <thead>
@@ -21,21 +28,29 @@
                             </thead>
                         </table>
                     </div>
-                    <div class="overlay" id="p-cats-overlay" style="display: none">
-                        <i class="fa fa-spinner fa-spin"></i>
-                    </div>
                 </div>
+                <!-- end content-->
             </div>
+            <!--  end card  -->
+        </div>
             <div class="col-md-6">
-                <div class="box box-info box-solid" >
-                    <div class="box-header">
-                        <h3 class="box-title">All Products</h3>
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="rose">
+                        <i class="material-icons">assignment</i>
                     </div>
-                    <div class="box-body">
-                        <h1 class="pull-right">
-                            <a class="btn btn-primary btn-sm pull-right" href="#create-product-modal" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px">Add Product</a>
-                        </h1>
-                        @include('products.table')
+                    <div class="card-content">
+                        <h4 class="card-title">Products</h4>
+                        <div class="toolbar">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="btn btn-primary pull-right btn-rose" href="#create-product-modal" data-toggle="modal">Add Product</a>
+                                </div>
+                            </div>
+                            {{--@include('flash::message')--}}
+{{--                            @include('adminlte-templates::common.errors')--}}
+                        </div>
+                        <div class="material-datatables">
+                        {{--@include('products.table')--}}
                         <input type="hidden" value="{{url('/getProducts')}}" id="products-dt">
                         <table class="table" id="products-table" style="width: 100%">
                             <thead>
@@ -46,6 +61,7 @@
                             </tr>
                             </thead>
                         </table>
+                        </div>
                     </div>
                     <div class="overlay" id="products-overlay" style="display: none">
                         <i class="fa fa-spinner fa-spin"></i>
@@ -55,7 +71,6 @@
         </div>
     </div>
 
-</div>
 {{--product category modals--}}
 <div class="modal fade" id="create-p-cat-modal" role="dialog">
     {{--        {!! Form::open(['route' => 'productCategories.store','id'=>'create-pcat-form']) !!}--}}
@@ -114,7 +129,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Edit Product Categories</h4>
+                    <h4 class="modal-title">Edit Product Categorie</h4>
                 </div>
                 <div class="modal-body">
                     @include('product_categories.fields')
@@ -122,8 +137,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="editDetails" value="{{ url("/productCategories") }}">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-simple">Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -140,14 +155,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Delete Product Categories</h4>
+                    <h4 class="modal-title">Delete Product Category</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete this Product Categories?</p>
+                    <p>Are you sure you want to delete this Product Category?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger btn-simple">Delete</button>
                 </div>
             </div>
         </div>
@@ -164,14 +179,14 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Create Products</h4>
+                <h4 class="modal-title">Create Product</h4>
             </div>
             <div class="modal-body">
                 @include('products.fields')
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-simple">Save</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -190,7 +205,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Edit Products</h4>
+                    <h4 class="modal-title">Edit Product</h4>
                 </div>
                 <div class="modal-body">
                     @include('products.fields')
@@ -198,8 +213,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="edit-p-Details" value="{{ url("/products") }}">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-simple">Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -224,8 +239,8 @@
                     <p>Are you sure you want to delete this Product?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger btn-simple">Yes</button>
                 </div>
             </div>
         </div>

@@ -21,16 +21,16 @@
                         </div>
                         <div class="material-datatables">
                             @include('stores.table')
+                            </div>
                         </div>
+                        <!-- end content-->
                     </div>
-                    <!-- end content-->
+                    <!--  end card  -->
                 </div>
-                <!--  end card  -->
+                <!-- end col-md-12 -->
             </div>
-            <!-- end col-md-12 -->
+            <!-- end row -->
         </div>
-        <!-- end row -->
-    </div>
 @endsection
 @section('modals')
     <div class="modal fade" id="create-modal" role="dialog">

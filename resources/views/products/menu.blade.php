@@ -4,10 +4,15 @@
         {{--<div class="row">--}}
             <div class="col-md-12">
                 <div class="col-md-8">
-                    <div class="box box-solid box-primary">
-                        <div class="box-body">
+                    <div class="card">
+                        <div class="card-header card-header-icon" data-background-color="rose">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Menu</h4>
+                            <div class="material-datatables">
                             <input type="hidden" id="p-menu-dt" value="{{ url("/getPMenus") }}">
-                            <table class="table" id="product-menus-tbl" style="width: 100%">
+                            <table class="table table-striped table-hover" id="product-menus-tbl" style="width: 100%">
                                 <thead>
                                 <tr>
                                     <th>Product</th>
@@ -18,14 +23,12 @@
                                 </thead>
                             </table>
                         </div>
-                        <div class="overlay" id="p-menus-overlay" style="">
-                            <i class="fa fa-spinner fa-spin"></i>
-                        </div>
+                    </div>
                     </div>
                 </div>
                     <div class="col-md-3">
-                        <div class="box box-solid box-primary">
-                            <div class="box-body">
+                        <div class="card">
+                            <div class="card-content">
                                 <div class="form-group">
                                     <h5><a href="#create-p-menu-modal" id="create-pm-modal" class="btn btn-info btn-block">Add Item</a></h5>
                                 </div>
@@ -70,7 +73,7 @@
                             @endif
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group label-floating is-empty">
                         <label>Description</label>
                         <textarea name="description" class="form-control" rows="2" ></textarea>
                     </div>
@@ -92,8 +95,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left " data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary" {{--v-on:click.prevent="savePCat()"--}}>Save</button>
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-simple" {{--v-on:click.prevent="savePCat()"--}}>Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -151,8 +154,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="e-id" >
-                    <button type="button" class="btn btn-default pull-left " data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary" {{--v-on:click.prevent="savePCat()"--}}>Save</button>
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success btn-simple" {{--v-on:click.prevent="savePCat()"--}}>Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -179,8 +182,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" id="d-id" >
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger btn-simple">Yes</button>
                 </div>
             </div>
         </div>

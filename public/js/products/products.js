@@ -92,6 +92,7 @@ $(function () {
 
 
 
+
     $(document).on("click",".edit-p-btn",function () {
         var action = $(this).attr("hint");
         var id = $(this).attr('e-id');
@@ -133,20 +134,40 @@ $(function () {
     // $("#product-menus-tbl tbody").on('click','tr',function(){
     //     $(this).toggleClass('selected');
     // })
+    // $('#product-menus-tbl > tbody').on('click', 'tr', function(event){
+    //     var edit_id = $(this).find('.m-id').val();
+    //     // alert(edit_id);
+    //     if(event.ctrlKey) {
+    //         $(this).toggleClass('selected');
+    //     } else {
+    //         if ( $(this).hasClass('selected') ) {
+    //             $('#product-menus-tbl > tbody > tr').removeClass('selected');
+    //             $("menu-e-btn").removeAttr('e-id');
+    //         } else {
+    //             $('#product-menus-tbl > tbody > tr').removeClass('selected');
+    //             $(this).toggleClass('selected');
+    //         }
+    //     }
+    // });
+
     $('#product-menus-tbl > tbody').on('click', 'tr', function(event){
-        var edit_id = $(this).find('.m-id').val();
-        // alert(edit_id);
-        if(event.ctrlKey) {
-            $(this).toggleClass('selected');
+        // var edit_id = $(this).find('.m-id').val();
+        // $("#comId").val(committeeId);
+        // loadComMembers(committeeId);
+
+        // if(event.ctrlKey) {
+        //     $(this).toggleClass('info');
+        // } else {
+        if ( $(this).hasClass('info') ) {
+            $('#product-menus-tbl > tbody > tr').removeClass('info');
+            // $("#add-member-btn").attr('committee-id','');
         } else {
-            if ( $(this).hasClass('selected') ) {
-                $('#product-menus-tbl > tbody > tr').removeClass('selected');
-                $("menu-e-btn").removeAttr('e-id');
-            } else {
-                $('#product-menus-tbl > tbody > tr').removeClass('selected');
-                $(this).toggleClass('selected');
-            }
+            $('#product-menus-tbl > tbody > tr').removeClass('info');
+            // $("#add-member-btn").removeAttr('committee-id');
+            // $("#add-member-btn").attr('committee-id',committeeId);
+            $(this).toggleClass('info');
         }
+        // }
     });
     $("#create-menu-form").on('submit', function(e){
         e.preventDefault();
@@ -215,7 +236,7 @@ $(function () {
 
     $(document).on('click',"#menu-e-btn",function (e) {
         var btn = $(this);
-        var tr = $('#product-menus-tbl > tbody > tr.selected');
+        var tr = $('#product-menus-tbl > tbody > tr.info');
         if(tr.length >0){
             var id = tr.find('.m-id').val();
             // alert(id);
@@ -313,7 +334,7 @@ $(function () {
 
     $(document).on('click','#delete-p-menu',function (e) {
         var btn = $(this);
-        var tr = $('#product-menus-tbl > tbody > tr.selected');
+        var tr = $('#product-menus-tbl > tbody > tr.info');
         if(tr.length >0){
             var id = tr.find('.m-id').val();
             // alert(id);

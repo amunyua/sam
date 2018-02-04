@@ -86,12 +86,12 @@ class RouteSeeder extends Seeder
         $product_id = $products->id;
 //
         #### user management children
-        $product_category = new Route();
+        /*$product_category = new Route();
         $product_category->route_name = 'Product Categories';
         $product_category->url = 'productCategories';
         $product_category->parent_route = $product_id;
         $product_category->save();
-        $product_category->roles()->attach($admin);
+        $product_category->roles()->attach($admin);*/
 
         //products
         $products = new Route();

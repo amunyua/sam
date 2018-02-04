@@ -47,11 +47,11 @@ class RouteDataTable extends DataTable
                 'dom'     => 'Bfrtip',
                 'order'   => [[0, 'desc']],
                 'buttons' => [
-                    'create',
-                    'export',
-                    'print',
-                    'reset',
-                    'reload',
+//                    'create',
+//                    'export',
+//                    'print',
+//                    'reset',
+//                    'reload',
                 ],
             ]);
     }

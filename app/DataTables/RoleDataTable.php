@@ -21,7 +21,7 @@ class RoleDataTable extends DataTable
         return $dataTable->addColumn('action', 'roles.datatables_actions')
 //            ->addColumn('permission','<div class="btn-group"><a href="#attach-permissions-modal" data-toggle="modal" class="attach-pms-btn btn btn-xs btn-primary"><i class="glyphicon glyphicon-paperclip"></i> Attach Permissions</a></div>' ,3)
             ->addColumn('permission',function (Role $role){
-                return '<div class="btn-group"><a href="#attach-permissions-modal" r-id="'.$role->id.'" data-toggle="modal" class="attach-pms-btn btn btn-xs btn-primary"><i class="glyphicon glyphicon-paperclip"></i> Attach Permissions</a></div>';
+                return '<div class="btn-group"><a href="#attach-permissions-modal" r-id="'.$role->id.'" data-toggle="modal" class="attach-pms-btn btn btn-xs btn-primary"> Attach Permissions</a></div>';
             } ,3)
             ->rawColumns(['action','permission','role_status'])
             ->editColumn('role_status',function(Role $role){

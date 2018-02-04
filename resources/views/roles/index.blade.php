@@ -1,33 +1,35 @@
-@extends('layouts.app')
-
+@extends('layouts.dt-1')
+@section("pageTitle","Users")
 @section('content')
-
-    <section class="content-header">
-    @section("pageTitle","Roles")
-    @section("pageSubtitle","Configure system roles and permissions")
-
-    @section("breadcrumbs")
-        <li>Home</li>
-        <li>Roles</li>
-        @endsection
-        <h1 class="pull-right">
-          <a class="btn btn-primary btn-sm pull-right" href="#create-modal" data-toggle="modal" style="margin-top: -10px;margin-bottom: 5px">Add New</a>
-        </h1>
-    </section>
-    <div class="content">
-        <div class="clearfix"></div>
-
-        @include('flash::message')
-
-        <div class="clearfix"></div>
-        <div class="box box-info box-solid">
-         <div class="box-header">
-                        <h3 class="box-title">All Roles</h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="purple">
+                        <i class="material-icons">assignment</i>
                     </div>
-            <div class="box-body">
+                    <div class="card-content">
+                        <h4 class="card-title">User Roles</h4>
+                        <div class="toolbar">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="#create-modal" data-toggle="modal" class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px;" >Add New</a>
+                                </div>
+                            </div>
+                            @include('flash::message')
+                            @include('adminlte-templates::common.errors')
+                        </div>
+                        <div class="material-datatables">
                     @include('roles.table')
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
             </div>
+            <!-- end col-md-12 -->
         </div>
+        <!-- end row -->
     </div>
 @endsection
 @section('modals')
@@ -39,14 +41,14 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">Create Roles</h4>
+                        <h4 class="modal-title">Create Role</h4>
                     </div>
                     <div class="modal-body">
                         @include('roles.fields')
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-simple">Save</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -65,7 +67,7 @@
                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
                        </button>
-                       <h4 class="modal-title">Edit Roles</h4>
+                       <h4 class="modal-title">Edit Role</h4>
                    </div>
                    <div class="modal-body">
                        @include('roles.fields')
@@ -73,8 +75,8 @@
                    </div>
                    <div class="modal-footer">
                        <input type="hidden" id="editDetails" value="{{ url("/roles") }}">
-                       <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                       <button type="submit" class="btn btn-primary">Save</button>
+                       <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                       <button type="submit" class="btn btn-primary btn-simple">Save</button>
                    </div>
                </div>
                <!-- /.modal-content -->
@@ -99,8 +101,8 @@
                             <p>Are you sure you want to delete this Role?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">No</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary btn-simple">Save</button>
                         </div>
                     </div>
                 </div>

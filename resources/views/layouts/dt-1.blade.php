@@ -19,7 +19,7 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ URL::asset('toastr/toastr.css') }}">
     @stack('css')
 </head>
 
@@ -74,9 +74,10 @@
 <script src="{{ asset('assets/js/jquery.tagsinput.js') }}"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
-<script src="{{ asset('js/common.js') }}"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+{{--<script src="{{ asset('js/common.js') }}"></script>--}}
+<!-- Material Dashboard DEMO methods, don't include it  in your project! -->
 {{--<script src="{{ asset('assets/js/demo.js') }}"></script>--}}
+<script src="{{ asset('toastr/toastr.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
