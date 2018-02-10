@@ -39,6 +39,7 @@ Route::resource('products', 'ProductController');
 Route::get('/getProductCats','ProductController@getProductCats');
 Route::get('/getProducts','ProductController@getProducts');
 Route::get('/getPMenus','ProductController@getProductMenus');
+Route::any('download', 'StoreController@fileDownload');
 
 Route::resource('productMenus', 'ProductMenuController');
 Route::get('getPm/{id}','ProductMenuController@show');

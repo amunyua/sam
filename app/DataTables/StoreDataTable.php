@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Store;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 
@@ -26,7 +27,16 @@ class StoreDataTable extends DataTable
                     return '<label class="label label-warning">Inactive</label>';
                 }
             })
-            ->rawColumns(['status','action'])
+//            ->editColumn('image',function(Store $document){
+//
+//                return '<form method="post" action="'.url("download").'">
+//                <input type="hidden" name="_token" value="'.csrf_token().'">
+//
+//                            <input type="hidden" name="path" value="'.$document->image.'">
+//                            <button type="submit" class="btn btn-success btn-xs">download</button>
+//</form>';
+//            })
+            ->rawColumns(['status','action','image'])
             ->addColumn('action', 'stores.datatables_actions');
     }
 

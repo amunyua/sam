@@ -179,4 +179,11 @@ class StoreController extends AppBaseController
 
         return redirect(route('stores.index'));
     }
+
+    public function fileDownload(\Illuminate\Http\Request $request){
+
+//        var_dump($request->path);die();
+        $path = explode('public/',$request->path);
+        return response()->download($path[1]);
+    }
 }
