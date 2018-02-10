@@ -133,8 +133,11 @@ class StoreController extends AppBaseController
         if($request->hasFile('image')){
             $ext = $request->image->getClientOriginalExtension();
 //            var_dump($ext)
+
             $path = explode('storage/',$store->image);
-            Storage::delete($path[1]);
+            if(count($path)){
+                Storage::delete($path[1]);
+            }
             $path = $request->file('image')->storeAs('documents',$string = str_replace(' ', '-', $request->store_name.'-'.Carbon::today()->toDateString()).'-'.Carbon::now()->timestamp.'.'.$ext);
             $input['image'] = asset('storage/'.$path);
         }
@@ -164,8 +167,9 @@ class StoreController extends AppBaseController
 
         $this->storeRepository->delete($id);
         $path = explode('storage/',$store->image);
-        Storage::delete($path[1]);
-
+        if(count($path)){
+            Storage::delete($path[1]);
+        }
         Flash::success('Store deleted successfully.');
 
         return redirect(route('stores.index'));
