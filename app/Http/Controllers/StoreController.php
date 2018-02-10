@@ -7,9 +7,11 @@ use App\Http\Requests;
 use App\Http\Requests\CreateStoreRequest;
 use App\Http\Requests\UpdateStoreRequest;
 use App\Repositories\StoreRepository;
+use Carbon\Carbon;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Response;
 
 class StoreController extends AppBaseController
@@ -55,7 +57,13 @@ class StoreController extends AppBaseController
         $input = $request->all();
         $input["created_by"] = Auth::id();
 //        var_dump($input);die();
+        if($request->hasFile('image')){
+            $ext = $request->image->getClientOriginalExtension();
+//            var_dump($ext)
 
+            $path = $request->file('image')->storeAs('documents',$string = str_replace(' ', '-', $request->store_name.'-'.Carbon::today()->toDateString()).'-'.Carbon::now()->timestamp.'.'.$ext);
+            $input['image'] = asset('storage/'.$path);
+        }
         $store = $this->storeRepository->create($input);
 
         Flash::success('Store saved successfully.');
@@ -115,14 +123,22 @@ class StoreController extends AppBaseController
     public function update($id, UpdateStoreRequest $request)
     {
         $store = $this->storeRepository->findWithoutFail($id);
+        $input = $request->input();
 
         if (empty($store)) {
             Flash::error('Store not found');
 
             return redirect(route('stores.index'));
         }
-
-        $store = $this->storeRepository->update($request->all(), $id);
+        if($request->hasFile('image')){
+            $ext = $request->image->getClientOriginalExtension();
+//            var_dump($ext)
+            $path = explode('storage/',$store->image);
+            Storage::delete($path[1]);
+            $path = $request->file('image')->storeAs('documents',$string = str_replace(' ', '-', $request->store_name.'-'.Carbon::today()->toDateString()).'-'.Carbon::now()->timestamp.'.'.$ext);
+            $input['image'] = asset('storage/'.$path);
+        }
+        $store = $this->storeRepository->update($input, $id);
 
         Flash::success('Store updated successfully.');
 
@@ -147,6 +163,8 @@ class StoreController extends AppBaseController
         }
 
         $this->storeRepository->delete($id);
+        $path = explode('storage/',$store->image);
+        Storage::delete($path[1]);
 
         Flash::success('Store deleted successfully.');
 

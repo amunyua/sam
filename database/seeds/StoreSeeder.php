@@ -14,7 +14,9 @@ class StoreSeeder extends Seeder
         \App\Models\Store::create([
             'store_name'=>"Java",
             'location'=>"Nairobi",
-            'status'=>true
+            'description'=>" Java offers roasted coffees teas burgers, fries and shakes, pancakes, waffles, omelettes, morning pastries, ice cream sundaes, banana splits, fruit salads, chips, burger buns, baguettes,cookies etc",
+            'status'=>true,
+            'image'=>""
         ]);
     }
 }

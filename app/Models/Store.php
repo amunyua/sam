@@ -30,7 +30,9 @@ class Store extends Model
         'store_name',
         'location',
         'status',
-        'created_by'
+        'created_by',
+        'image',
+        'description'
     ];
 
     /**
@@ -43,7 +45,9 @@ class Store extends Model
         'store_name' => 'string',
         'location' => 'string',
         'status' => 'boolean',
-        'created_by'=>'integer'
+        'created_by'=>'integer',
+        'image'=>'text',
+        'description'=>'text'
     ];
 
     /**
@@ -53,7 +57,9 @@ class Store extends Model
      */
     public static $rules = [
         'store_name'=>'required',
-//        'created_by'=>'required'
+//        'created_by'=>'required',
+        'image'=>'required',
+        'description'=>'required'
     ];
 
     

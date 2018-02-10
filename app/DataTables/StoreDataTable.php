@@ -74,7 +74,11 @@ class StoreDataTable extends DataTable
     {
         return [
             'store_name',
+            'description'=>[
+                'title'=>'Description'
+            ],
             'location',
+            'image',
             'status'
         ];
     }

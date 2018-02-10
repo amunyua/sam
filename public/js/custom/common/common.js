@@ -17,7 +17,7 @@ $(document).on("click",".edit-common",function () {
         dataType:"json",
         success: function (data) {
             if(data) {
-                $('form#edit-form').find('input.form-control,select.form-control').each(function (index, element) {
+                $('form#edit-form').find('input.form-control,select.form-control,textarea.form-control').each(function (index, element) {
                     // console.log();
                     var attrId = $(element).attr('id');
                     // alert(attrId);

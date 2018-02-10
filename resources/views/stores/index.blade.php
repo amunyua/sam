@@ -34,7 +34,7 @@
 @endsection
 @section('modals')
     <div class="modal fade" id="create-modal" role="dialog">
-            {!! Form::open(['route' => 'stores.store']) !!}
+            {!! Form::open(['route' => 'stores.store','files'=>true]) !!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -58,7 +58,7 @@
     </div>
 
     <div class="modal fade" id="edit-modal" role="dialog">
-           <form method="post" id="edit-form">
+           <form method="post" id="edit-form" enctype="multipart/form-data">
                {{ csrf_field() }}
            <input name="_method" type="hidden" value="PATCH">
            <div class="modal-dialog">
@@ -109,4 +109,18 @@
             </form>
         </div>
     @endsection
+@push('js')
+    <script>
+        $(function () {
+            $('input[type="file"]').change(function() {
+//                if ($(this).val()) {
+//                    var filename = $(this);
+                $(".select-doc-btn").html($(this)[0].files[0].name);
+//                }
+//                return true;
+            });
+            return true;
+        })
 
+    </script>
+@endpush

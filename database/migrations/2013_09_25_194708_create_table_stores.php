@@ -17,7 +17,9 @@ class CreateTableStores extends Migration
             $table->increments('id');
             $table->string('store_name');
             $table->string('location');
+            $table->text('description');
             $table->boolean('status');
+            $table->text('image');
             $table->integer('created_by')->unsigned()->nullable();
             $table->timestamps();
         });
