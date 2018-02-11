@@ -1,0 +1,1 @@
+var baseUrl = "http://localhost:8080/sam/public/api/";

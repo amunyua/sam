@@ -47,3 +47,10 @@ Route::get('getPm/{id}','ProductMenuController@show');
 
 
 Route::resource('uOMS', 'UOMController');
+
+
+#######################################################################################
+//front end routes
+
+Route::get('index',"FrontEndController@index");
+Route::get('partner/{id}',"FrontEndController@partner");

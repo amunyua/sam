@@ -83,7 +83,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="close-p-cat-modal">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Create Product Categories</h4>
+                    <h4 class="modal-title">Create Product Category</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -108,8 +108,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left " data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary" {{--v-on:click.prevent="savePCat()"--}}>Save</button>
+                    <button type="button" class="btn btn-default btn-simple btn-danger" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-simple btn-success"  {{--v-on:click.prevent="savePCat()"--}}>Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->

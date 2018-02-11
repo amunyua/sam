@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
         $admin->email = 'admin@admin.com';
         $admin->password = bcrypt(123456);
 //        $admin->created_by = 0;
+        $admin->store_id = 1;
         $admin->password_updated = true;
         $admin->save();
         $admin->roles()->attach($sys_admin);
