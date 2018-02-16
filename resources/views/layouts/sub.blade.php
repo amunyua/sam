@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- navigation panel -->
-@include('layouts.partials.front-navbar')
+{{--@include('layouts.partials.front-navbar')--}}
 <!--end navigation panel -->
 
 

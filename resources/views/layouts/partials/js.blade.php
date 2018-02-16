@@ -12,14 +12,14 @@
 <!-- easy piechart-->
 <script type="text/javascript" src="{{ asset('front/assets/js/jquery.easypiechart.js')}}"></script>
 <!-- parallax -->
-<script type="text/javascript" src="{{ asset('front/assets/js/jquery.parallax-1.1.3.js')}}"></script>
+{{--<script type="text/javascript" src="{{ asset('front/assets/js/jquery.parallax-1.1.3.js')}}"></script>--}}
 <!--portfolio with shorting tab -->
 <script type="text/javascript" src="{{ asset('front/assets/js/jquery.isotope.min.js')}}"></script>
 <!-- owl slider  -->
 <script type="text/javascript" src="{{ asset('front/assets/js/owl.carousel.min.js')}}"></script>
 <!-- magnific popup  -->
-<script type="text/javascript" src="{{ asset('front/assets/js/jquery.magnific-popup.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('front/assets/js/popup-gallery.js')}}"></script>
+{{--<script type="text/javascript" src="{{ asset('front/assets/js/jquery.magnific-popup.min.js')}}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('front/assets/js/popup-gallery.js')}}"></script>--}}
 <!-- text effect  -->
 <script type="text/javascript" src="{{ asset('front/assets/js/text-effect.js')}}"></script>
 <!-- revolution slider  -->

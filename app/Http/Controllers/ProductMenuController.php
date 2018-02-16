@@ -6,6 +6,7 @@ use App\DataTables\ProductMenuDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateProductMenuRequest;
 use App\Http\Requests\UpdateProductMenuRequest;
+use App\Models\Product;
 use App\ProductMenuCategory;
 use App\Repositories\ProductMenuRepository;
 use Flash;
@@ -58,7 +59,8 @@ class ProductMenuController extends AppBaseController
         $input = $request->all();
         $input["created_by"]= Auth::id();
         $input["store_id"]= Auth::user()->store_id;
-        $input["product_menu_cat"]= ProductMenuCategory::find(1)->id;
+        $input["product_menu_cat"]= 1;
+//        $input["product_category"] = Product::find()
         try{
             $productMenu = $this->productMenuRepository->create($input);
             $status['status'] = "success";

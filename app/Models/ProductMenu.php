@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Database\Eloquent\Collection roleUser
  * @property \Illuminate\Database\Eloquent\Collection users
  * @property integer product_id
- * @property integer uom
+// * @property integer uom
  * @property string description
  * @property float price
  * @property boolean status
@@ -43,7 +43,8 @@ class ProductMenu extends Model
         'status',
         'created_by',
         'store_id',
-        'product_menu_cat'
+        'product_menu_cat',
+//        'product_category'
     ];
 
     /**
