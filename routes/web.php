@@ -54,3 +54,7 @@ Route::resource('uOMS', 'UOMController');
 
 Route::get('index',"FrontEndController@index");
 Route::get('partner/{id}',"FrontEndController@partner");
+Route::get('prodMenu/{id}',"FrontEndController@getMenuProduct");
+Route::get('mobile',"FrontEndController@mobileVerification");
+Route::post('checkout',"FrontEndController@checkout");
+Route::post('customer-details',"FrontEndController@customerDetails");

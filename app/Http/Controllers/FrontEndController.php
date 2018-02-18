@@ -8,11 +8,12 @@ use App\Models\Store;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class FrontEndController extends Controller
 {
+    public static $cart = [];
     public function index(){
-
         return view('home.index',[
             'stores'=>Store::all()
         ]);
@@ -30,6 +31,7 @@ class FrontEndController extends Controller
     public function partner($id){
         $productMenus = DB::table('product_menus as pm')
             ->select([
+                'pm.id',
                 'pm.product_id',
                 'pm.uom',
                 'pm.description',
@@ -170,7 +172,7 @@ class FrontEndController extends Controller
                                                     </div>
     
                                                     <form method="get" action="/cart/add-product/vendor/k8jp/product/164410?productId=130501">
-                                                        <button class="btn add-to-cart " type="submit" data-item_url="/cart/add-product/vendor/k8jp/product/164410?productId=130501">
+                                                        <button class="btn add-to-cart add-to-cart-a " type="submit" data-item_url="/cart/add-product/vendor/k8jp/product/164410?productId=130501">
                                                             <i class="icon icon-add icon-add-to-cart"></i>
                                                             <i class="icon icon-added icon-added-to-cart"></i>
                                                         </button>
@@ -233,19 +235,16 @@ class FrontEndController extends Controller
                                     $uoms = $product2->where('product_id',$prod);
                                     if(count($uoms)){
                                         foreach ($uoms as $uom){
-                                            echo '<article class="menu-item__variation js-fire-click-tracking-event" data-event="clicked_product" data-clicked_product_id="130501" data-clicked_product_name="Velvet Crumble" data-clicked_product_category_name="Donuts" data-clicked_product_category_id="14804" data-clicked_product_popular="no" data-item_url="/cart/add-product/vendor/k8jp/product/164410?productId=130501">
+                                            echo '<article class="menu-item__variation" >
                                                     <div class="menu-item__variation__title">'.$uom->uom_name.'</div>
     
                                                     <div class="menu-item__variation__price ">
                                                         '.$uom->price.' Ksh
                                                     </div>
     
-                                                    <form method="get" action="/cart/add-product/vendor/k8jp/product/164410?productId=130501">
-                                                        <button class="btn add-to-cart " type="submit" data-item_url="/cart/add-product/vendor/k8jp/product/164410?productId=130501">
-                                                            <i class="icon icon-add icon-add-to-cart"></i>
-                                                            <i class="icon icon-added icon-added-to-cart"></i>
+                                                        <button class="btn add-to-cart add-to-cart-a " menuid ="'.$uom->id.'" >
+                                                            <i class="icon fa  fa-plus-circle " style="margin-top: 13px;font-size: 15px;"></i>
                                                         </button>
-                                                    </form>
                                                 </article>';
                                         }
                                     }
@@ -260,5 +259,47 @@ class FrontEndController extends Controller
                 }
             }
         }
+    }
+
+    public function getMenuProduct($id){
+        $menuItem = ProductMenu::query()
+            ->select(["product_menus.*",'products.name','u.name as uom_name'])
+        ->leftJoin('products','products.id','=','product_menus.product_id')
+            ->leftJoin('uoms as u','u.id','=','product_menus.uom')
+            ->where('product_menus.id',$id)
+            ->first();
+
+        return response()->json($menuItem);
+    }
+
+    public function mobileVerification(){
+        session_start();
+
+//        print_r( $_SESSION['cart']);die;
+        return view('shop.mobile');
+    }
+
+    public function checkout(Request $request){
+        session_start();
+        $_SESSION['cart'] = [
+            'items'=>$request->cart,
+            ];
+
+        return response()->json("success");
+
+    }
+
+    public function customerDetails(Request $request){
+        session_start();
+        $cart =  $_SESSION['cart'];
+        $customerDetails = [
+            "sender_name"=>$request->sender_name,
+            'sender_number'=>$request->sender_country_code.$request->sender_mobile_number,
+            "receiver_name"=>$request->receiver_name,
+            "receiver_number"=>$request->receiver_country_code.$request->receiver_mobile_number
+        ];
+        $cart['customerDetails'] = $customerDetails;
+        $_SESSION['cart'] = $cart;
+        return view();
     }
 }

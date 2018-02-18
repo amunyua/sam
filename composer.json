@@ -19,7 +19,8 @@
         "yajra/laravel-datatables": "1.0",
         "yajra/laravel-datatables-buttons": "3.*",
         "yajra/laravel-datatables-html": "3.0",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "yajra/laravel-datatables-oracle": "~8.0",
+        "infobip/infobip-api-php-client": "dev-master"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",

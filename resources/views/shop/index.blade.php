@@ -70,7 +70,7 @@
     </section>
     <!-- end head section -->
     <!-- content section -->
-    <div class="container-alex">
+    {{--<div class="container-alex">--}}
         <div class="breadcrumbs">
             <div class="container">
                 <ol class="breadcrumbs__pages">
@@ -95,41 +95,14 @@
 
         <main class="js-sticky-height-calculate-container">
             <div class="container" style="width: 80%">
-
                 <div class="vendor-view-container js-sticky-height-calculate-container js-tooltip-container" >
                     <section class="row">
-                        <div class="cart-container cart-container--vendor">
+                        <div class="cart-container cart-container--vendor"  >
                             <div class="js-sticky-element" style="">
                                 <div class="cart cart--vendor">
                                     <div class="cart__inner">
+                                        <div class="spinner" role="progressbar" style="display:none;position: absolute; width: 0px; z-index: 2000000000; left: 50%; top: 50%;"><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-0-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(0deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-1-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(32deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-2-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(65deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-3-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(98deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-4-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(130deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-5-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(163deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-6-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(196deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-7-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(229deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-8-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(261deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-9-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(294deg) translate(5px, 0px); border-radius: 0px;"></div></div><div style="position: absolute; top: -1px; transform: translate3d(0px, 0px, 0px); opacity: 0.25; animation: opacity-30-25-10-11 0.833333s linear infinite;"><div style="position: absolute; width: 8px; height: 2px; background: rgb(0, 0, 0); box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px; transform-origin: left center 0px; transform: rotate(327deg) translate(5px, 0px); border-radius: 0px;"></div></div></div>
                                         <div class="cart__content">
-                                            <div class="header-mobile-container header-mobile-container__cart">
-                                                <div class="header-mobile">
-                                                    <div class="header-mobile__title header-mobile__your-basket">
-                                                        <i class="icon icon-left-arrow"></i>
-                                                        <span>Your Basket</span>
-                                                    </div>
-
-                                                    <div class="header-mobile__edit-your-basket">
-                                                        <span>Edit order</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                           {{-- <div class="cart__header__head ">
-                                                <div class="cart__header__head__delivery-time">
-                                                    <div class="cart__header__head__delivery-time__label">
-                                                        Estimated delivery time
-                                                    </div>
-                                                    <div class="cart__header__head__delivery-time__time">
-
-                                                        <span class="delivery_time_minutes">60</span>
-
-                                                        <span class="delivery_time_label">minutes</span>
-                                                    </div>
-                                                    <div class="clear"></div>
-                                                </div>
-                                            </div>--}}
 
                                             <div class="cart__header">
                                                 <div class="cart__header__title">
@@ -137,44 +110,84 @@
                                                     <div class="clear"></div>
                                                 </div>
                                             </div>
-
-                                            <div class="cart__empty cart__empty--inside">
-                                                <div class="cart__empty__icon-container">
-                                                    <i class="icon icon-basket"></i>
-                                                    <span class="no-items-text">Add menu items into your basket</span>
-                                                </div>
+                                            <div id="cart-table" style="">
+                                            <div class="cart__products" style="max-height: none;">
+                                                <input type="hidden" value="{{ url('prodMenu') }}" id="prod-action">
+                                                <input type="hidden" value="{{ url('checkout') }}" id="checkout-url">
+                                                <input type="hidden" id="mobile-route" value="{{ url("mobile") }}">
+                                                <table class="" id="tb">
+                                                    <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
                                             </div>
+                                            <div class="cart__summary cart-summary" id="" style="display: none;">
+                                                <table>
+                                                    <tbody>
+                                                    {{--<tr class="subtotal">--}}
+                                                        {{--<td></td>--}}
+                                                        {{--<td class="title">Subtotal</td>--}}
+                                                        {{--<td class="price">1,140Ksh</td>--}}
+                                                    {{--</tr>--}}
+                                                    {{--<tr class="vat">--}}
+                                                        {{--<td></td>--}}
+                                                        {{--<td class="title">--}}
+                                                            {{--Including VAT--}}
+                                                        {{--</td>--}}
+                                                        {{--<td class="price">171Ksh</td>--}}
+                                                    {{--</tr>--}}
+                                                    <tr class="total">
+                                                        <td></td>
+                                                        <td colspan="2" class="title ">
+                                                            <div>
+                                                                <span>Total</span>
+                                                                <span class="total-price" id="total">
 
-
-
-
+                                                                  </span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="cart__checkout cart-summary" style="display: none;">
+                                                <a onclick="proceedToCheckout()" class="btn btn-primary btn-block btn-lg js-checkout-btn">
+                                                    Proceed to checkout
+                                                </a>
+                                            </div>
+                                            </div>
                                         </div>
-
-                                        <div class="cart__empty cart__empty--outside">
-                                            <ul class="cart__empty__elements">
-                                                <li>
-                <span class="title">
-                    Delivery fee:
-                                    </span>
-                                                    <span class="value">
-                    200Ksh
-                </span>
-                                                </li>
-                                                <li>
-                                                    <span class="title">Accepts Vouchers</span>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        {{--<div class="cart__empty cart__empty--outside">--}}
+                                            {{--<ul class="cart__empty__elements">--}}
+                                                {{--<li>--}}
+                                                {{--<span class="title">--}}
+                                                    {{--Delivery fee:--}}
+                                                {{--</span>--}}
+                                                {{--<span class="value">--}}
+                                                    {{--100Ksh--}}
+                                                {{--</span>--}}
+                                                {{--</li>--}}
+                                                {{--<li>--}}
+                                                    {{--<span class="title">Accepts Vouchers</span>--}}
+                                                {{--</li>--}}
+                                            {{--</ul>--}}
+                                        {{--</div>--}}
                                     </div>
 
-                                    {{--<script>--}}
+                                    {{--<script>
 
-                                        {{--FD--}}
-                                            {{--.setControllerConfig('Cart', 'enable', true)--}}
-                                            {{--.setControllerConfig('Cart', 'cartRefreshUrl', "\/cart\/show-cart\/k8jp")--}}
-                                            {{--.setControllerConfig('Cart', 'showPopupIfMinimumOrderAmountIsNotReached', false)--}}
-                                        {{--;--}}
-                                    {{--</script>--}}
+                                        FD
+                                            .setControllerConfig('Cart', 'enable', true)
+                                            .setControllerConfig('Cart', 'cartRefreshUrl', "\/cart\/show-cart\/k0rm")
+                                            .setControllerConfig('Cart', 'showPopupIfMinimumOrderAmountIsNotReached', false)
+                                        ;
+                                    </script>--}}
                                 </div>
                             </div>
 
@@ -185,394 +198,17 @@
                                 <li class="vendor-tabs__menu active">
                                     <a href="#menu" class="js-tab">Menu</a>
                                 </li>
-                                <li class="vendor-tabs__info">
-                                    <a href="#info" class="js-tab">Info</a>
-                                </li>
+                                {{--<li class="vendor-tabs__info">--}}
+                                    {{--<a href="#info" class="js-tab">Info</a>--}}
+                                {{--</li>--}}
                             </ul>
 
                             <section class="tab-content">
-                                <div class="tab-pane" id="info">
-                                    <div class="vendor-info">
-                                        <h2 class="vendor-info__title">
-                                            Grub Donuts Info
-                                        </h2>
-
-                                        <div class="vendor-info__cuisines">
-                                            <div class="vendor-info__cuisines__title">
-                                                Cuisines
-                                            </div>
-
-                                            <ul class="vendor-info__cuisines__list"><li class="vendor-info__cuisines__list__item" itemprop="servesCuisine" content="Cakes &amp; Pastries"><a href="/restaurants/city/nairobi/cuisines/cakespastries">Cakes &amp; Pastries in Nairobi</a></li></ul>    </div>
-
-                                        <div class="vendor-info__schedules">
-                                            <hr>
-                                            <div class="vendor-info__schedules__delivery">
-                                                <div class="vendor-info__schedules__title">
-                                                    Delivery hours
-                                                </div>
-                                                <ul class="schedules">
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Monday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Delivery hours">
-                                                <meta itemprop="dayOfWeek" content="Monday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Tuesday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Delivery hours">
-                                                <meta itemprop="dayOfWeek" content="Tuesday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Wednesday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Delivery hours">
-                                                <meta itemprop="dayOfWeek" content="Wednesday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Thursday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Delivery hours">
-                                                <meta itemprop="dayOfWeek" content="Thursday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Friday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Delivery hours">
-                                                <meta itemprop="dayOfWeek" content="Friday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Saturday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Delivery hours">
-                                                <meta itemprop="dayOfWeek" content="Saturday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  isToday">
-            <span class="schedules__item__day">
-                Sunday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Delivery hours">
-                                                <meta itemprop="dayOfWeek" content="Sunday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="vendor-info__schedules__pickup">
-                                                <div class="vendor-info__schedules__title">
-                                                    Takeway hours
-                                                </div>
-                                                <ul class="schedules">
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Monday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Takeway hours">
-                                                <meta itemprop="dayOfWeek" content="Monday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Tuesday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Takeway hours">
-                                                <meta itemprop="dayOfWeek" content="Tuesday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Wednesday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Takeway hours">
-                                                <meta itemprop="dayOfWeek" content="Wednesday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Thursday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Takeway hours">
-                                                <meta itemprop="dayOfWeek" content="Thursday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Friday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Takeway hours">
-                                                <meta itemprop="dayOfWeek" content="Friday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  ">
-            <span class="schedules__item__day">
-                Saturday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Takeway hours">
-                                                <meta itemprop="dayOfWeek" content="Saturday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                    <li class="schedules__item  isToday">
-            <span class="schedules__item__day">
-                Sunday
-            </span>
-                                                        <span class="schedules__item__times">
-                                    <span class="schedules__item__time" itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification">
-                        07:00 - 18:00
-                                                    <meta itemprop="description" content="Takeway hours">
-                                                <meta itemprop="dayOfWeek" content="Sunday">
-                                                    <meta itemprop="opens" content="07:00:00">
-                            <meta itemprop="closes" content="18:00:00">
-                                            </span>
-                            </span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <p class="vendor-info__schedules__closed-notice">
-                                                Please note: the restaurant may be open before and after the Jumia Food hours: 00:00 - 22:00
-                                            </p>
-                                        </div>
-
-                                        <div class="vendor-info__overview">
-                                            <hr>
-                                            <dl class="vendor-info__overview__list">
-                                                <dt class="vendor-delivery-fee">Delivery fee</dt>
-                                                <dd>
-
-                                                    From 200Ksh
-                                                </dd>
-
-                                                <dt class="vendor-pickup-time">Pickup Time</dt>
-                                                <dd>
-                                                    24h
-                                                </dd>
-
-                                                <dt class="vendor-delivery-time">Delivery time</dt>
-                                                <dd>
-                                                    1h
-                                                </dd>
-                                            </dl>
-                                        </div>
-
-
-                                        <div class="vendor-info__address">
-                                            <hr>
-                                            <div class="vendor-info__address__title">
-                                                Address
-                                            </div>
-                                            <address class="vendor-info__address__content" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
-                                                <span itemprop="streetAddress">Maua close, Kaka house, Fourth floor jumia food</span>, <span itemprop="addressRegion">Nairobi</span>    </address>
-                                            <div class="vendor-info__address__map" itemprop="geo" itemscope="" itemtype="http://schema.org/GeoCoordinates">
-                                                <meta itemprop="latitude" content="-1.262162">
-                                                <meta itemprop="longitude" content="36.803055">
-                                            </div>
-                                        </div>
-
-                                        <div class="vendor-info__payment-types">
-                                            <hr>
-                                            <div class="vendor-info__payment-types__title">
-                                                Payment types
-                                            </div>
-                                            <dl class="vendor-info__payment-types__list" itemprop="paymentAccepted">
-                                                <dt class="vendor-info__payment-types__list__title">Cash On Delivery</dt>
-                                                <dt class="vendor-info__payment-types__list__title">Lipa na Mpesa</dt>
-                                                <dt class="vendor-info__payment-types__list__title">Pay with Sodexo</dt>
-                                            </dl>
-                                        </div>
-
-
-
-                                    </div>
-                                </div>
                                 <div class="tab-pane active" id="menu">
                                     <div class="vendor-menu">
-                                        <div class="header-mobile-container header-mobile-container__categories" style="display: block; overflow: hidden; height: 0.138215px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-                                            <div class="header-mobile">
-                                                <div class="header-mobile__title header-mobile__selected-category">
-                                                    <span class="selected-category-text">
-                                                        Donuts
-                                                    </span>
-                                                    <span class="filtered-results-text">Filtered results</span>
-
-                                                    <i class="icon icon-down-arrow"></i>
-                                                </div>
-                                                <div class="header-mobile__title header-mobile__filter-button">
-                                                    <i class="icon icon-filter"></i>
-                                                </div>
-                                                <div class="clear"></div>
-                                            </div>
-
-
-                                        </div>
-
-                                        <div class="header-mobile-container header-mobile-container__filters">
-                                            <div class="header-mobile">
-                                                <div class="header-mobile__title header-mobile__title__filters">
-                                                    <div class="header-mobile__title__filters__back">
-                                                        <i class="icon icon-left-arrow"></i>
-                                                    </div>
-
-                                                    <span>Filters</span>
-
-                                                    <div class="header-mobile__title__filters__clear">Clear all</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="header-mobile__contents">
-                                                <div class="header-mobile__contents__filters" style="max-height: 592px;">
-                                                    <ul class="header-mobile__contents__filters__categories">
-
-                                                        <li class="header-mobile__contents__filters__categories__category">
-                                                            <div class="header-mobile__contents__filters__categories__category__title">Origin</div>
-                                                            <div class="header-mobile__contents__filters__categories__category__filters">
-                                                                <ul>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1003">Fish</li>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1004">Halal</li>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1007">Kosher</li>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1001">Meat</li>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1006">Organic</li>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1002">Pork</li>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1005">Vegan</li>
-                                                                    <li data-dish-characteristic-category="food-origin" data-dish-characteristic-code="1000">Vegetarian</li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-
-                                                        <li class="header-mobile__contents__filters__categories__category">
-                                                            <div class="header-mobile__contents__filters__categories__category__title">Spiciness</div>
-                                                            <div class="header-mobile__contents__filters__categories__category__filters">
-                                                                <ul>
-                                                                    <li data-dish-characteristic-category="spicy" data-dish-characteristic-code="1008">Mild spicy</li>
-                                                                    <li data-dish-characteristic-category="spicy" data-dish-characteristic-code="1009">Spicy</li>
-                                                                    <li data-dish-characteristic-category="spicy" data-dish-characteristic-code="1010">Very Spicy</li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-
-                                                        <li class="header-mobile__contents__filters__categories__category">
-                                                            <div class="header-mobile__contents__filters__categories__category__title">Without</div>
-                                                            <div class="header-mobile__contents__filters__categories__category__filters">
-                                                                <ul>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1025">Celery</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1018">Cereals containing gluten</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1019">Crustaceans</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1020">Eggs</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1029">Lupin</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1023">Milk</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1030">Molluscs</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1026">Mustard</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1024">Nuts</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1021">Peanuts</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1027">Sesame</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1022">Soybeans</li>
-                                                                    <li data-dish-characteristic-category="allergen-alerts" data-dish-characteristic-code="1028">Sulphites</li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-
-                                                    <div class="header-mobile__contents__filters__footer">
-                                                        <span class="header-mobile__contents__filters__footer__apply">Apply</span>
-                                                        <span class="header-mobile__contents__filters__footer__clear">Clear all filters</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                         <aside class="vendor-menu__categories">
                                             <div id="sticky-wrapper" class="sticky-wrapper" style="height: 168px;">
                                                 <div class="js-sticky-element js-vendor-detail-menu-categories" data-sticky-bottom-margin="40" style="">
-
                                                    <?php
                                                     $con = new \App\Http\Controllers\FrontEndController();
                                                     $con->displayMenus($products);
@@ -580,7 +216,6 @@
                                                 </div>
                                             </div>
                                         </aside>
-
                                         <div class="vendor-menu__menus ">
                                             <?php
                                             $con->loadMenuProducts($products);
@@ -593,16 +228,15 @@
                     </section>
                 </div>
 
-
-
             </div>
         </main>
-    </div>
+    {{--</div>--}}
     @endif
     @endsection
 @push("js")
     <script type="text/javascript" src="{{ asset('front/js/fp-head.js')}}"></script>
     <script type="text/javascript" src="{{ asset('front/js/food-panda.js')}}"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         FD
             .setControllerConfig('VendorDetailTabs', 'enable', true)
@@ -613,9 +247,11 @@
         ;
     </script>
 
+<script>
 
-
-    <script type="application/ld+json">
-    {"@context":"http:\/\/schema.org","@type":"Restaurant","@id":"k8jp","name":"Grub Donuts","description":null,"url":"https:\/\/food.jumia.co.ke\/restaurant\/k8jp\/grub-donuts","menu":"https:\/\/food.jumia.co.ke\/restaurant\/k8jp\/grub-donuts","logo":"https:\/\/africa-public.food.jumia.com\/assets\/production\/ke\/images\/vendors\/k8jp.jpg?v=20171129151713","paymentAccepted":["Cash On Delivery","Lipa na Mpesa","Pay with Sodexo"],"currenciesAccepted":"KES","servesCuisine":["Cakes & Pastries"],"address":{"@type":"PostalAddress","streetAddress":"Maua close, Kaka house, Fourth floor jumia food","addressCountry":"KE","addressLocality":"Nairobi","addressRegion":"Nairobi"},"aggregateRating":{"@type":"AggregateRating","ratingValue":0,"reviewCount":0},"review":[],"geo":{"@type":"GeoCoordinates","latitude":-1.262162,"longitude":36.803055},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"07:00:00","closes":"18:00:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"07:00:00","closes":"18:00:00"}],"potentialAction":{"@type":"OrderAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/food.jumia.co.ke\/restaurant\/k8jp\/grub-donuts","inLanguage":"en","actionPlatform":["http:\/\/schema.org\/DesktopWebPlatform","http:\/\/schema.org\/MobileWebPlatform"]},"deliveryMethod":["http:\/\/purl.org\/goodrelations\/v1#DeliveryModePickUp","http:\/\/purl.org\/goodrelations\/v1#DeliveryModeOwnFleet"],"priceSpecification":{"@type":"DeliveryChargeSpecification","appliesToDeliveryMethod":"http:\/\/purl.org\/goodrelations\/v1#DeliveryModeOwnFleet","priceCurrency":"KES","price":200,"eligibleTransactionVolume":{"@type":"PriceSpecification","priceCurrency":"KES","price":0}}},"telephone":"254720954283"}
 </script>
+
+    <script src="{{URL::asset('js/shop-front.js') }}"></script>
+
+
     @endpush
