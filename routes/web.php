@@ -58,3 +58,6 @@ Route::get('prodMenu/{id}',"FrontEndController@getMenuProduct");
 Route::get('mobile',"FrontEndController@mobileVerification");
 Route::post('checkout',"FrontEndController@checkout");
 Route::post('customer-details',"FrontEndController@customerDetails");
+Route::get('review',"FrontEndController@reviewCart");
+Route::get('getCart',"FrontEndController@getCart");
+Route::get('place-order',"FrontEndController@placeOrder");

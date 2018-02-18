@@ -281,11 +281,24 @@ class FrontEndController extends Controller
 
     public function checkout(Request $request){
         session_start();
-        $_SESSION['cart'] = [
-            'items'=>$request->cart,
+        if($request->has("partnerId")){
+            $_SESSION['cart'] = [
+                'partnerId'=>$request->partnerId,
+                'items'=>$request->cart,
             ];
+        }else{
+            $cart = $_SESSION['cart'];
+            $customerDetails = $cart["customerDetails"];
+            $partnerId = $cart["partnerId"];
+            $_SESSION['cart'] = [
+                'partnerId'=>$partnerId,
+                'items'=>$request->cart,
+                'customerDetails'=>$customerDetails
+            ];
+        }
 
-        return response()->json("success");
+
+        return response()->json($_SESSION['cart']);
 
     }
 
@@ -300,6 +313,39 @@ class FrontEndController extends Controller
         ];
         $cart['customerDetails'] = $customerDetails;
         $_SESSION['cart'] = $cart;
-        return view();
+        return redirect('review');
+    }
+
+    public function reviewCart(){
+        session_start();
+        $cart =  $_SESSION['cart'];
+//        print_r($cart);die;
+        return view('shop.review-order',[
+            'partner'=>Store::find($cart["partnerId"])
+        ]);
+    }
+
+    function getCart(){
+        session_start();
+        $cart =  $_SESSION['cart'];
+        if(!is_null($cart)){
+            $cart = $cart["items"];
+        }else{
+            $cart= [];
+        }
+
+        return response()->json($cart);
+
+    }
+
+    public function placeOrder(){
+        session_start();
+        $cart =  $_SESSION['cart'];
+//        print_r($cart);die();
+        return view('shop.place-order',[
+            'customerDetails'=>$cart["customerDetails"],
+            'items'=>$cart["items"],
+            'partner'=>Store::find($cart["partnerId"])
+        ]);
     }
 }

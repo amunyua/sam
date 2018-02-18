@@ -115,6 +115,7 @@
                                                 <input type="hidden" value="{{ url('prodMenu') }}" id="prod-action">
                                                 <input type="hidden" value="{{ url('checkout') }}" id="checkout-url">
                                                 <input type="hidden" id="mobile-route" value="{{ url("mobile") }}">
+                                                <input type="hidden" id="partner-id" value="{{ $partner->id }}">
                                                 <table class="" id="tb">
                                                     <thead>
                                                     <tr>
