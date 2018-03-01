@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 //
 //Auth::routes();
@@ -53,6 +53,7 @@ Route::resource('uOMS', 'UOMController');
 //front end routes
 
 Route::get('index',"FrontEndController@index");
+Route::get('/',"FrontEndController@index");
 Route::get('partner/{id}',"FrontEndController@partner");
 Route::get('prodMenu/{id}',"FrontEndController@getMenuProduct");
 Route::get('mobile',"FrontEndController@mobileVerification");
