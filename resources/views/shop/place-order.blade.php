@@ -224,14 +224,23 @@
                                     <div class="panel">
                                         <div class="panel-heading">
                                             <h3 class="panel-title">
-                                                Choose how to pay
+                                                Proceed to payment
                                             </h3>
                                         </div>
                                         <div class="panel-body">
                                             <div class="checkout-payment-types">
-                                                <span class="form-fields-required-notice checkout-form-message">
-                                                      Required fields
-                                                </span>
+                                                {{--<span class="form-fields-required-notice checkout-form-message">--}}
+                                                      {{----}}
+                                                {{--</span>--}}
+                                                <form method="post" action="https://payments.ipayafrica.com/v3/ke">
+                                                    @if(count($fields))
+                                                        @foreach ($fields as $key => $value)
+                                                        <input name="{{ $key }}" type="hidden" value="{{ $value }}">
+                                                        @endforeach
+                                                        @endif
+                                                    <input name="hsh" type="text" value="{{ $generated_hash }}" >
+                                                    <button onclick="continueToPayment()"  class="btn btn-success">Continue to payment</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -252,13 +261,9 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="{{URL::asset('js/shop-front.js') }}"></script>
     <script>
-        // FD
-        //     .setControllerConfig('VendorDetailTabs', 'enable', true)
-        //     .setControllerConfig('VendorDetailProductVariation', 'enable', true)
-        //     .setControllerConfig('VendorDetailMenuScrollSpy', 'enable', true)
-        //     .setControllerConfig('ToggleElements', 'enable', true)
-        //     .setControllerConfig('VendorDetailProductVariation', 'maximiumQuantityReachedMessage', 'You&#039;ve already selected the maximum')
-        // ;
+       function continueToPayment() {
+           alert('ok');
+       }
     </script>
 
 

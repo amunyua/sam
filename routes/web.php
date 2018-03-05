@@ -62,3 +62,5 @@ Route::post('customer-details',"FrontEndController@customerDetails");
 Route::get('review',"FrontEndController@reviewCart");
 Route::get('getCart',"FrontEndController@getCart");
 Route::get('place-order',"FrontEndController@placeOrder");
+Route::any("iPayCbk",'FrontEndController@ipayCallback');
+Route::any("pay",'FrontEndController@saveOrderAndProceedToPayment');

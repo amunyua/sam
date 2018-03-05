@@ -281,6 +281,7 @@ class FrontEndController extends Controller
 
     public function checkout(Request $request){
         session_start();
+//        $s
         if($request->has("partnerId")){
             $_SESSION['cart'] = [
                 'partnerId'=>$request->partnerId,
@@ -296,7 +297,7 @@ class FrontEndController extends Controller
                 'customerDetails'=>$customerDetails
             ];
         }
-
+//        print_r( $_SESSION['cart']);die;
 
         return response()->json($_SESSION['cart']);
 
@@ -342,10 +343,41 @@ class FrontEndController extends Controller
         session_start();
         $cart =  $_SESSION['cart'];
 //        print_r($cart);die();
+        $fields=[
+            "live"=> "0",
+            "oid"=> "112",
+            "inv"=> "112020102292999",
+            "ttl"=> 100,
+            "tel"=> "25415862938",
+            "eml"=> "alexmunyua10@gmail.com",
+            "vid"=> "demo",
+            "curr"=> "KES",
+            "p1"=> "safaricom",
+            "p2"=> "020102292999",
+            "p3"=> "",
+            "p4"=> "900",
+            "cbk"=> url('iPayCbk'),
+            "cst"=> "1",
+            "crl"=> "0"
+        ];
+        $datastring =  $fields['live'].$fields['oid'].$fields['inv'].$fields['ttl'].$fields['tel'].$fields['eml'].$fields['vid'].$fields['curr'].$fields['p1'].$fields['p2'].$fields['p3'].$fields['p4'].$fields['cbk'].$fields['cst'].$fields['crl'];
+        $hashkey ="demo";
+        $generated_hash = hash_hmac('sha1',$datastring , $hashkey);
         return view('shop.place-order',[
             'customerDetails'=>$cart["customerDetails"],
             'items'=>$cart["items"],
-            'partner'=>Store::find($cart["partnerId"])
+            'partner'=>Store::find($cart["partnerId"]),
+            'fields'=>$fields,
+            'generated_hash'=>$generated_hash
         ]);
+    }
+
+//    public function saveOrderAndProceedToPayment(Request $request){
+//
+//        return redirect('https://payments.ipayafrica.com/v3/ke');
+//    }
+
+    public function ipayCallback(Request $request){
+//        print_r($request);
     }
 }
