@@ -24,6 +24,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function (data) {
                 // cart = data;
+                // console.log(data);
                 if(data.length >0){
                     // console.log(data);
                     $.each(data,function(index,e){
@@ -31,7 +32,7 @@ $(document).ready(function() {
                          prodId: parseInt(e.prodId),
                          price: e.price,
                          prodName: e.prodName,
-                         quantity: 1,
+                         quantity: e.quantity,
                          uom: e.uom
                      })
                     })
@@ -204,6 +205,7 @@ function loadCartTable(data){
         ]
     });
     if(cart.length>0){
+        // console.log(data);
         var total = 0;
         $.each(cart,function(index,element){
             total = total + (element.quantity* element.price);

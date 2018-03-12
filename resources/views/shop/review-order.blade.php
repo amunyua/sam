@@ -140,16 +140,4 @@
     {{--<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="{{URL::asset('js/shop-front.js') }}"></script>
-    <script>
-        // FD
-        //     .setControllerConfig('VendorDetailTabs', 'enable', true)
-        //     .setControllerConfig('VendorDetailProductVariation', 'enable', true)
-        //     .setControllerConfig('VendorDetailMenuScrollSpy', 'enable', true)
-        //     .setControllerConfig('ToggleElements', 'enable', true)
-        //     .setControllerConfig('VendorDetailProductVariation', 'maximiumQuantityReachedMessage', 'You&#039;ve already selected the maximum')
-        // ;
-    </script>
-
-
-
-@endpush
+    @endpush

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderLine;
+use App\Models\Payment;
 use App\Models\ProductCategory;
 use App\Models\ProductMenu;
 use App\Models\Store;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -29,6 +33,8 @@ class FrontEndController extends Controller
         return $parentCats;
     }
     public function partner($id){
+        session_start();
+        $_SESSION['cart'] = [];
         $productMenus = DB::table('product_menus as pm')
             ->select([
                 'pm.id',
@@ -308,9 +314,11 @@ class FrontEndController extends Controller
         $cart =  $_SESSION['cart'];
         $customerDetails = [
             "sender_name"=>$request->sender_name,
-            'sender_number'=>$request->sender_country_code.$request->sender_mobile_number,
+            'sender_number'=>$request->sender_mobile_number,
+            'sender_email'=>$request->sender_email,
             "receiver_name"=>$request->receiver_name,
-            "receiver_number"=>$request->receiver_country_code.$request->receiver_mobile_number
+            "receiver_email"=>$request->receiver_email,
+            "receiver_number"=>$request->receiver_mobile_number
         ];
         $cart['customerDetails'] = $customerDetails;
         $_SESSION['cart'] = $cart;
@@ -343,41 +351,140 @@ class FrontEndController extends Controller
         session_start();
         $cart =  $_SESSION['cart'];
 //        print_r($cart);die();
-        $fields=[
-            "live"=> "0",
-            "oid"=> "112",
-            "inv"=> "112020102292999",
-            "ttl"=> 100,
-            "tel"=> "25415862938",
-            "eml"=> "alexmunyua10@gmail.com",
-            "vid"=> "demo",
-            "curr"=> "KES",
-            "p1"=> "safaricom",
-            "p2"=> "020102292999",
-            "p3"=> "",
-            "p4"=> "900",
-            "cbk"=> url('iPayCbk'),
-            "cst"=> "1",
-            "crl"=> "0"
-        ];
-        $datastring =  $fields['live'].$fields['oid'].$fields['inv'].$fields['ttl'].$fields['tel'].$fields['eml'].$fields['vid'].$fields['curr'].$fields['p1'].$fields['p2'].$fields['p3'].$fields['p4'].$fields['cbk'].$fields['cst'].$fields['crl'];
-        $hashkey ="demo";
-        $generated_hash = hash_hmac('sha1',$datastring , $hashkey);
         return view('shop.place-order',[
             'customerDetails'=>$cart["customerDetails"],
             'items'=>$cart["items"],
-            'partner'=>Store::find($cart["partnerId"]),
-            'fields'=>$fields,
-            'generated_hash'=>$generated_hash
+            'partner'=>Store::find($cart["partnerId"])
         ]);
     }
 
-//    public function saveOrderAndProceedToPayment(Request $request){
-//
-//        return redirect('https://payments.ipayafrica.com/v3/ke');
-//    }
+    private $_total =0;
+    private $_order_id = null;
+    public function saveOrderAndProceedToPayment(Request $request){
+        session_start();
+        $cart =  $_SESSION['cart'];
+        $customer = $cart['customerDetails'];
+        $items = new Collection($cart["items"]);
+        $fields =[];
+        //here get details from the cart details
+        try{
+//            $total = 0;
+            DB::transaction(function () use($customer,$items,$cart,$request){
 
+                foreach ($items as $item){
+                    $this->_total = $this->_total + ($item["quantity"] * $item["price"]);
+                }
+               $order = Order::create([
+                   'sender_name'=> $customer["sender_name"],
+                   'sender_email'=> $customer["sender_email"],
+                   'sender_number'=> $customer["sender_number"],
+                   'receiver_name'=> $customer["receiver_name"],
+                   'receiver_phone' => $customer["receiver_number"],
+                   'receiver_email'=> (isset($customer["receiver_email"]))? $customer["receiver_email"] : '',
+                   'store_id' => $cart["partnerId"],
+                   'total'=>$this->_total,
+                   'amount_paid'=>0,
+                   'ip'=> $request->ip()
+               ]);
+                $this->_order_id = $order->id;
+                foreach ($items as $item){
+//                    echo $order->id;die();
+                    $orderLines = OrderLine::create([
+                        'order_id'=>$order->id,
+                        'product_id'=>$item["prodId"],
+                        'store_id'=> $cart["partnerId"],
+                        'price'=>$item["price"],
+                        'uom'=>$item["uom"],
+                        'product_name'=>$item["prodName"],
+                        'quantity'=> $item["quantity"]
+                    ]);
+                }
+
+//                return $fields;
+            });
+            $fields=[
+                "live"=> "0",
+                "oid"=> $this->_order_id,
+                "inv"=> $this->_order_id,
+                "ttl"=> $this->_total,
+                "tel"=> $customer["sender_number"],
+                "eml"=> $customer["sender_email"],
+                "vid"=> "demo",
+                "curr"=> "KES",
+                "p1"=> $this->_order_id,
+                "p2"=> $this->_total,
+                "p3"=> $cart["partnerId"],
+                "p4"=> "900",
+                "cbk"=> url('iPayCbk'),
+                "cst"=> "1",
+                "crl"=> "0"
+            ];
+            $datastring =  $fields['live'].$fields['oid'].$fields['inv'].$fields['ttl'].$fields['tel'].$fields['eml'].$fields['vid'].$fields['curr'].$fields['p1'].$fields['p2'].$fields['p3'].$fields['p4'].$fields['cbk'].$fields['cst'].$fields['crl'];
+            $hashkey ="demo";
+            $generated_hash = hash_hmac('sha1',$datastring , $hashkey);
+            $fields["hsh"] = $generated_hash;
+
+            $status = true;
+            $message = "success";
+        }catch (QueryException $ex){
+            $status = false;
+            $message = $ex->errorInfo[2];
+        }
+
+
+        return response()->json(['status' => $status, 'data'=>$fields,$message]);
+    }
+
+
+    public static $success = "aei7p7yrx4ae34";
     public function ipayCallback(Request $request){
-//        print_r($request);
+        $status = false;
+        switch ($request->status){
+            case self::$success:
+                if(Payment::where('txn_code',$request->txncd)->first() == null) {
+                    try{
+                        DB::transaction(function()use($request){
+                            $payment = Payment::create([
+                                'order_id' => $request->id,
+                                'txn_code' => $request->txncd,
+                                'ipay_status' => $request->status,
+                                'status_meaning' => "Success",
+                                'invoice_number' => $request->id,
+                                'registered_name' => $request->msisdn_id,
+                                'registered_number' => $request->msisdn_idnum,
+                                'store_id' => $request->p3,
+                                'channel' => $request->channel,
+                                'amount_to_be_paid' => $request->p2,
+                                'total_paid' => $request->mc,
+                                'short' => 0,
+                                'excess' => 0,
+                                'complete' => true
+                            ]);
+
+                            $order = Order::find($request->id);
+                            $order->amount_paid = $request->mc;
+                            $order->payment_method = $request->channel;
+                            $order->refCode = $request->txncd;
+                            $order->paid = true;
+                            $order->valid = true;
+                            $order->save();
+                        });
+                        $status = true;
+                    }catch (QueryException $e){
+                        throw $e;
+                    }
+                }
+
+                break;
+        }
+
+//        if($status){
+            return redirect('complete');
+//        }
+    }
+
+    public function complete(){
+
+        return view('shop.complete');
     }
 }

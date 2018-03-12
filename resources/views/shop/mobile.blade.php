@@ -6,6 +6,9 @@
         section{
             padding: 0;
         }
+        .js-login-register-flow .add-mobile form .form-group{
+            margin-top: 0px;
+        }
     </style>
 @endpush
 @section('content')
@@ -83,19 +86,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-xs-4 col-sm-3">
-                                            <input type="text" required value="254" name="sender_country_code">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-8 col-sm-9">
+
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
                                             <input type="text" name="sender_mobile_number"  placeholder="Mobile" required>
                                         </div>
                                     </div>
                                 </div>
-                                <p class="login-register-form-subtitle pull-left" style="margin-top: 10px;">Enter recipient details</p>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
+                                            <input type="email" name="sender_email"  placeholder="Your Email Address" required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="login-register-form-subtitle pull-left" style="">Enter recipient details</p>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12">
@@ -104,17 +113,20 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-xs-4 col-sm-3">
-                                            <input type="text" name="receiver_country_code" required value="254">
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
+                                            <input type="number" name="receiver_mobile_number"  placeholder="Mobile" required>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-8 col-sm-9">
-                                            <input type="text" name="receiver_mobile_number"  placeholder="Mobile" required>
-                                        </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
+                                            <input type="email" name="receiver_email"  placeholder="Email Address (optional)">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">

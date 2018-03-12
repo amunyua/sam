@@ -46,3 +46,15 @@ $smenu->loadSideMenu(NULL);
 
 
 
+<li class="{{ Request::is('orders*') ? 'active' : '' }}">
+    <a href="{!! route('orders.index') !!}"><i class="fa fa-edit"></i><span>Orders</span></a>
+</li>
+
+<li class="{{ Request::is('orderLines*') ? 'active' : '' }}">
+    <a href="{!! route('orderLines.index') !!}"><i class="fa fa-edit"></i><span>Order Lines</span></a>
+</li>
+
+<li class="{{ Request::is('payments*') ? 'active' : '' }}">
+    <a href="{!! route('payments.index') !!}"><i class="fa fa-edit"></i><span>Payments</span></a>
+</li>
+

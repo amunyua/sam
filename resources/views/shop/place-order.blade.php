@@ -181,15 +181,15 @@
                                                         <dt>Full Name</dt>
                                                         <dd>{{ $customerDetails["sender_name"] }}</dd>
 
-                                                        {{--<dt>Email</dt>--}}
-                                                        {{--<dd>--}}
-                                                        {{--kinuthia_alex@yahoo.com--}}
+                                                        <dt>Email</dt>
+                                                        <dd>
+                                                        {{ $customerDetails["sender_email"] }}
 
-                                                        {{--</dd>--}}
+                                                        </dd>
 
                                                         <dt>Mobile</dt>
                                                         <dd>
-                                                           +{{ $customerDetails["sender_number"] }}
+                                                           {{ $customerDetails["sender_number"] }}
                                                         </dd>
                                                         <dt></dt>
 
@@ -200,16 +200,16 @@
                                                     <dl class="checkout-customer-details">
                                                         <dt>Full Name</dt>
                                                         <dd>{{ $customerDetails["receiver_name"] }}</dd>
-
-                                                        {{--<dt>Email</dt>--}}
-                                                        {{--<dd>--}}
-                                                        {{--kinuthia_alex@yahoo.com--}}
-
-                                                        {{--</dd>--}}
-
+                                                        @if(!is_null($customerDetails["receiver_email"]))
+                                                        <dt>Email</dt>
+                                                        <dd>
+                                                            {{ $customerDetails["receiver_email"] }}
+{{----}}
+                                                        </dd>
+                                                        @endif
                                                         <dt>Mobile</dt>
                                                         <dd>
-                                                            +{{ $customerDetails["receiver_number"] }}
+                                                            {{ $customerDetails["receiver_number"] }}
 
                                                         </dd>
                                                         <dt></dt>
@@ -229,17 +229,20 @@
                                         </div>
                                         <div class="panel-body">
                                             <div class="checkout-payment-types">
+                                                <button class="btn" id="c-button" value="{{ url('pay') }}">Proceed to checkout</button>
                                                 {{--<span class="form-fields-required-notice checkout-form-message">--}}
                                                       {{----}}
                                                 {{--</span>--}}
-                                                <form method="post" action="https://payments.ipayafrica.com/v3/ke">
-                                                    @if(count($fields))
-                                                        @foreach ($fields as $key => $value)
-                                                        <input name="{{ $key }}" type="hidden" value="{{ $value }}">
-                                                        @endforeach
-                                                        @endif
-                                                    <input name="hsh" type="text" value="{{ $generated_hash }}" >
-                                                    <button onclick="continueToPayment()"  class="btn btn-success">Continue to payment</button>
+                                                <form method="post" action="https://payments.ipayafrica.com/v3/ke" id="checkout-f">
+                                                    <div id="checkout-form-div"></div>
+                                                    {{--{{ csrf_field() }}--}}
+                                                    {{--@if(count($fields))--}}
+                                                        {{--@foreach ($fields as $key => $value)--}}
+                                                        {{--<input name="{{ $key }}" type="hidden" value="{{ $value }}">--}}
+                                                        {{--@endforeach--}}
+                                                        {{--@endif--}}
+                                                    {{--<input name="hsh" type="hidden" value="{{ $generated_hash }}" >--}}
+                                                    {{--<button type="submit"  class="btn btn-success">Continue to payment</button>--}}
                                                 </form>
                                             </div>
                                         </div>
@@ -260,11 +263,8 @@
     {{--<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>--}}
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="{{URL::asset('js/shop-front.js') }}"></script>
-    <script>
-       function continueToPayment() {
-           alert('ok');
-       }
-    </script>
+    <script src="{{URL::asset('js/payment.js') }}"></script>
+
 
 
 

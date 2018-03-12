@@ -108,6 +108,21 @@ class RouteSeeder extends Seeder
         $products->save();
         $products->roles()->attach($admin);
 
+        ##################################### order management
+        $order = Route::create([
+            'route_name' => "Order Management",
+            'url' => '#',
+            'icon'=>'group_work',
+            'sequence'=> 4
+        ]);
+
+        $orderChild = Route::create([
+            'route_name' => 'All Orders',
+            'url'=> 'orders',
+            'parent_route' => $order->id,
+
+        ]);
+        $orderChild->roles()->attach($admin);
 
         #### user management
         $user_mngt = new Route();
