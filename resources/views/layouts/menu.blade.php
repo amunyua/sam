@@ -58,3 +58,11 @@ $smenu->loadSideMenu(NULL);
     <a href="{!! route('payments.index') !!}"><i class="fa fa-edit"></i><span>Payments</span></a>
 </li>
 
+<li class="{{ Request::is('broadcasts*') ? 'active' : '' }}">
+    <a href="{!! route('broadcasts.index') !!}"><i class="fa fa-edit"></i><span>Broadcasts</span></a>
+</li>
+
+<li class="{{ Request::is('sms*') ? 'active' : '' }}">
+    <a href="{!! route('sms.index') !!}"><i class="fa fa-edit"></i><span>Sms</span></a>
+</li>
+

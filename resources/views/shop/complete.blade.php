@@ -21,7 +21,7 @@
                 <ul class="checkout-steps" data-active-checkout-step="customer-details">
 
 
-                    <li class="checkout-step active-checkout-step" data-section="customer-details">
+                    <li class="checkout-step" data-section="customer-details">
                         <div class="checkout-step-content">
                             <p class="checkout-step-title">1</p>
 
@@ -44,7 +44,7 @@
                             <p class="checkout-step-text">Place Order</p>
                         </div>
                     </li>
-                    <li class="checkout-step " data-section="checkout">
+                    <li class="checkout-step active-checkout-step" data-section="complete">
                         <div class="checkout-step-content">
                             <p class="checkout-step-title">4</p>
 
@@ -54,21 +54,21 @@
                 </ul>
 
                 <div class="login-register-title">
+                    Congratulations!
                 </div>
             </div>
 
-            <div class="flash-messages">
-                <div class="container">
-                </div>
-            </div>
+
             <main class="js-sticky-height-calculate-container">
                 <div class="container">
-
-
-                    <div class="content-block auth login js-login-register-flow">
-                        <div class="login-register-content-block add-mobile">
-
+                    <div class="mini-cart-details" style="box-shadow: none;background: none;">
+                        <div class="alert alert-success">
+                            <p> Dear alex your order has been confirmed and an sms has been sent to the </p>
                         </div>
+                    </div>
+
+                    <div class="mini-cart-details" style="box-shadow: none;background: none;">
+                        <a href="{{ url('/') }}" class="btn btn-success btn-block"style="background-color: #6dbc92;border-color: #6dbc92;">Continue shopping</a>
                     </div>
                 </div>
             </main>

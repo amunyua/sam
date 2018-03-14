@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendSms;
 use App\Models\Order;
 use App\Models\OrderLine;
 use App\Models\Payment;
 use App\Models\ProductCategory;
 use App\Models\ProductMenu;
+use App\Models\Sms;
 use App\Models\Store;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use infobip;
+use JsonMapper;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class FrontEndController extends Controller
@@ -468,6 +473,14 @@ class FrontEndController extends Controller
                             $order->paid = true;
                             $order->valid = true;
                             $order->save();
+                            $message = "Dear ".$order->receiver_name.' '.$order->sender_name.' has sent you a voucher';
+                            $sms = new Sms();
+                            $sms->message = $message;
+                            $sms->recipient = $order->receiver_phone;
+                            $sms->sender = $order->sender_number;
+                            $sms->store_id = $order->store_id;
+                            $sms->save();
+                            SendSms::dispatch($message,$order->receiver_phone);
                         });
                         $status = true;
                     }catch (QueryException $e){
@@ -479,12 +492,31 @@ class FrontEndController extends Controller
         }
 
 //        if($status){
-            return redirect('complete');
+            return redirect('complete/'.$request->id);
 //        }
     }
 
-    public function complete(){
+    public function complete($id){
+        session_start();
+        $cart = (isset($_SESSION['cart']))? $_SESSION["cart"]:[];
+        return view('shop.complete',[
+            'cart'=>$cart
+        ]);
+    }
 
-        return view('shop.complete');
+    public function infoBipReturnData(Request $responseBody){
+//        Log::
+        $mapper = new JsonMapper();
+
+        $responseObject = $mapper->map(json_decode($responseBody), new infobip\api\model\sms\mt\reports\SMSReportResponse());
+
+        for ($i = 0; $i < count($responseObject->getResults()); ++$i) {
+            $result = $responseObject->getResults()[$i];
+            Log::info( "Message ID: " . $result->getMessageId() . "\n");
+//            echo "Sent at: " . $result->getSentAt()->format('y-M-d H:m:s T') . "\n";
+//            echo "Receiver: " . $result->getTo() . "\n";
+//            echo "Status: " . $result->getStatus()->getName() . "\n";
+//            echo "Price: " . $result->getPrice()->getPricePerMessage() . " " . $result->getPrice()->getCurrency() . "\n\n";
+        }
     }
 }

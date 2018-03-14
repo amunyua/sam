@@ -44,6 +44,13 @@
                             <p class="checkout-step-text">Place Order</p>
                         </div>
                     </li>
+                    <li class="checkout-step" data-section="complete">
+                        <div class="checkout-step-content">
+                            <p class="checkout-step-title">4</p>
+
+                            <p class="checkout-step-text">Complete</p>
+                        </div>
+                    </li>
                 </ul>
 
                 <div class="login-register-title">

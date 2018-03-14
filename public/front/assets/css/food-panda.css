@@ -13779,8 +13779,6 @@ html.js .checkout-delivery-addresses-selector.display-one-address .formatted-add
 @media (max-width: 480px) {
     .js-login-register-flow.auth,.mini-cart-details {
         width:auto;
-        margin-left: -10px;
-        margin-right: -10px
     }
 
     .mini-cart-details .vendor.review-order .vendor__inner {

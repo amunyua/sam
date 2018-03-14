@@ -64,10 +64,16 @@ Route::get('getCart',"FrontEndController@getCart");
 Route::get('place-order',"FrontEndController@placeOrder");
 Route::any("iPayCbk",'FrontEndController@ipayCallback');
 Route::any("pay",'FrontEndController@saveOrderAndProceedToPayment');
-Route::get("complete",'FrontEndController@complete');
+Route::get("complete/{id}",'FrontEndController@complete');
+Route::any("infobip-callback",'FrontEndController@infoBipReturnData');
 
 Route::resource('orders', 'OrderController');
 
 Route::resource('orderLines', 'OrderLineController');
 
 Route::resource('payments', 'PaymentController');
+
+
+Route::resource('broadcasts', 'BroadcastController');
+
+Route::resource('sms', 'SmsController');
