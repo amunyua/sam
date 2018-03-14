@@ -480,7 +480,7 @@ class FrontEndController extends Controller
                             $sms->sender = $order->sender_number;
                             $sms->store_id = $order->store_id;
                             $sms->save();
-                            SendSms::dispatch($message,$order->receiver_phone);
+                            SendSms::dispatch($message,$order->receiver_phone,$sms->id);
                         });
                         $status = true;
                     }catch (QueryException $e){
@@ -504,9 +504,12 @@ class FrontEndController extends Controller
         ]);
     }
 
-    public function infoBipReturnData(Request $responseBody){
-//        Log::
-        $mapper = new JsonMapper();
+    public function infoBipReturnData($id,Request $responseBody){
+        $sms = Sms::find($id);
+        if(!is_null($sms)){
+            Log::info("not null response");
+        }
+        /*$mapper = new JsonMapper();
 
         $responseObject = $mapper->map(json_decode($responseBody), new infobip\api\model\sms\mt\reports\SMSReportResponse());
 
@@ -515,8 +518,8 @@ class FrontEndController extends Controller
             Log::info( "Message ID: " . $result->getMessageId() . "\n");
 //            echo "Sent at: " . $result->getSentAt()->format('y-M-d H:m:s T') . "\n";
 //            echo "Receiver: " . $result->getTo() . "\n";
-//            echo "Status: " . $result->getStatus()->getName() . "\n";
-//            echo "Price: " . $result->getPrice()->getPricePerMessage() . " " . $result->getPrice()->getCurrency() . "\n\n";
-        }
+            echo "Status: " . $result->getStatus()->getName() . "\n";
+            echo "Price: " . $result->getPrice()->getPricePerMessage() . " " . $result->getPrice()->getCurrency() . "\n\n";
+        }*/
     }
 }

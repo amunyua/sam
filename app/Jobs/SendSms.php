@@ -23,14 +23,16 @@ class SendSms implements ShouldQueue
 
     protected $_sms;
     public $tries = 2;
-    protected  $password = 'k1nuth1a';
-    protected $username = 'Openpath';
+    protected  $password = 'samuel_nguro';
+    protected $username = 'samuel_nguro';
     protected $_message;
     protected $to;
-    public function __construct($m,$to)
+    protected $message_id;
+    public function __construct($m,$to,$id)
     {
         $this->_message = $m;
-        $this->to;
+        $this->to = $to;
+        $this->message_id = $id;
     }
 
     /**
@@ -45,17 +47,21 @@ class SendSms implements ShouldQueue
         $client = new infobip\api\client\SendMultipleTextualSmsAdvanced(new infobip\api\configuration\BasicAuthConfiguration($this->username, $this->password));
         $destination = new infobip\api\model\Destination();
 //        if($this->_sms->)
+        if($this->to[0] ==='0'){
+            $this->to = '254'.ltrim($this->to,'0');
+        }
+//        var_dump($this->to);die();
         $destination->setTo($this->to);
 
         $message = new infobip\api\model\sms\mt\send\Message();
         $message->setFrom("Voomsms");
         $message->setDestinations([$destination]);
         $message->setText($this->_message);
-        $message->setNotifyUrl(url('infobip-callback'));
+        $message->setNotifyUrl(url('infobip-callback/'.$this->message_id));
 
         $requestBody = new infobip\api\model\sms\mt\send\textual\SMSAdvancedTextualRequest();
         $requestBody->setMessages([$message]);
-//        $response = $client->execute($requestBody);
+        $response = $client->execute($requestBody);
 //        Log::info($response);
     }
 

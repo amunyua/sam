@@ -65,7 +65,7 @@ Route::get('place-order',"FrontEndController@placeOrder");
 Route::any("iPayCbk",'FrontEndController@ipayCallback');
 Route::any("pay",'FrontEndController@saveOrderAndProceedToPayment');
 Route::get("complete/{id}",'FrontEndController@complete');
-Route::any("infobip-callback",'FrontEndController@infoBipReturnData');
+Route::any("infobip-callback/{id}",'FrontEndController@infoBipReturnData');
 
 Route::resource('orders', 'OrderController');
 
