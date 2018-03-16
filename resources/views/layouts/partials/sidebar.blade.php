@@ -11,7 +11,7 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
         </a>
     </div>
     <div class="logo logo-mini">
-        <a href="http://www.creative-tim.com" class="simple-text">
+        <a href="{{ url('/') }}" class="simple-text">
             Ct
         </a>
     </div>
@@ -53,7 +53,7 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                     @endif
 
                         <a {{ ($item->parent) ? 'data-toggle=collapse' : '' }} href="{{ ($item->parent) ? $item->url . $item->id : url($item->url) }}">
-                            {{--<i class="material-icons">{{ $item->icon }}</i>--}}
+                            <i class="material-icons">{{ $item->icon }}</i>
                             <p>{{ $item->title }} {!! ($item->parent) ? '<b class="caret"></b>' : '' !!}</p>
                         </a>
                         @if($item->parent)

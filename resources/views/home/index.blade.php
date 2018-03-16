@@ -31,7 +31,7 @@
     <nav class="navbar navbar-default navbar-fixed-top nav-transparent overlay-nav sticky-nav nav-white nav-border-bottom no-transition" role="navigation">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-6"><a class="logo-light" href="index.html"><img alt="" src="images/logo-white.png" class="logo" /></a><a class="logo-dark" href="index.html"><img alt="" src="images/logo-light.png" class="logo" /></a></div>
+                <div class="col-md-3 col-sm-3 col-xs-6"><a class="logo-light" href="{{ url('/') }}"><img alt="" src="images/logo-white.png" class="logo" /></a><a class="logo-dark" href="index.html"><img alt="" src="images/logo-light.png" class="logo" /></a></div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="slider-text-middle-main">
                     <div class="slider-text-middle slider-text-middle2">
                         <div class="separator-line bg-white"></div>
-                        <span class="slider-subtitle2 white-text">Welcome to the world<br>best leading gift online gift shop</span>
+                        <span class="slider-subtitle2 white-text">Welcome to the world's<br>leading online gift shop</span>
                         {{--<a class="btn-small-white btn margin-six inner-link" href="#shops">Go to shops!</a>--}}
                         {{--<a class="btn-small-white btn margin-six inner-link" href="#features">Go Emotions!</a>--}}
                     </div>

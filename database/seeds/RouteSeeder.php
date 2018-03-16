@@ -60,13 +60,32 @@ class RouteSeeder extends Seeder
         $analytics_dash->save();
         $analytics_dash->roles()->attach($admin);
 
+        ########### Communication management
+        $communication = Route::create([
+            'route_name' => "Communication",
+            'url' => '#',
+            'icon'=>'ring_volume',
+            'sequence'=> 2
+        ]);
 
+        $comChild = Route::create([
+            'route_name' => 'Comm Templates',
+            'url'=> 'broadcasts',
+            'parent_route' => $communication->id,
+        ]);
+        $comChild->roles()->attach($admin);
+        $comChild = Route::create([
+            'route_name' => 'All Sms',
+            'url'=> 'sms',
+            'parent_route' => $communication->id,
+        ]);
+        $comChild->roles()->attach($admin);
 
         #### Store management
         $store_management = new Route();
         $store_management->route_name = 'Store Management';
         $store_management->icon = 'home';
-        $store_management->sequence = 2;
+        $store_management->sequence = 3;
         $store_management->save();
         $store_m_id = $store_management->id;
 
@@ -81,7 +100,7 @@ class RouteSeeder extends Seeder
         $products = new Route();
         $products->route_name = 'Product Management';
         $products->icon = 'group_work';
-        $products->sequence = 3;
+        $products->sequence = 4;
         $products->save();
         $product_id = $products->id;
 //
@@ -112,13 +131,20 @@ class RouteSeeder extends Seeder
         $order = Route::create([
             'route_name' => "Order Management",
             'url' => '#',
-            'icon'=>'group_work',
+            'icon'=>'shopping_cart',
             'sequence'=> 4
         ]);
 
         $orderChild = Route::create([
             'route_name' => 'All Orders',
             'url'=> 'orders',
+            'parent_route' => $order->id,
+
+        ]);
+        $orderChild->roles()->attach($admin);
+        $orderChild = Route::create([
+            'route_name' => 'All Payments',
+            'url'=> 'payments',
             'parent_route' => $order->id,
 
         ]);
@@ -147,7 +173,7 @@ class RouteSeeder extends Seeder
         $roles->save();
         $roles->roles()->attach($admin);
 
-//        #### system
+/*//        #### system
         $system = new Route();
         $system->route_name = 'System Settings';
         $system->icon = 'settings';
@@ -161,7 +187,7 @@ class RouteSeeder extends Seeder
         $routes->url = 'routes';
         $routes->parent_route = $system_id;
         $routes->save();
-        $routes->roles()->attach($admin);
+        $routes->roles()->attach($admin);*/
 
 //        $role = new Route();
 //        $role->route_name = 'Delete User';

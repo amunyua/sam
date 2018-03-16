@@ -18,6 +18,7 @@ class BroadcastController extends AppBaseController
 
     public function __construct(BroadcastRepository $broadcastRepo)
     {
+        $this->middleware('auth');
         $this->broadcastRepository = $broadcastRepo;
     }
 

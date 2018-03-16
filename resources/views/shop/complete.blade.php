@@ -52,22 +52,30 @@
                         </div>
                     </li>
                 </ul>
-
+<br>
+<br>
                 <div class="login-register-title">
                     Congratulations!
                 </div>
             </div>
 
-
+<br>
             <main class="js-sticky-height-calculate-container">
                 <div class="container">
-                    <div class="mini-cart-details" style="box-shadow: none;background: none;">
-                        <div class="alert alert-success">
-                            <p> Dear alex your order has been confirmed and an sms has been sent to the </p>
-                        </div>
-                    </div>
+                    @if(!is_null($cart))
+                        <?php $custDetails = $cart['customerDetails']; ?>
+                            <div class="mini-cart-details" style="box-shadow: none;background: none;">
+                                <div class="alert alert-success">
+                                    <p> Dear {{ $custDetails['sender_name'] }} your order has been confirmed and an sms has been sent to {{ $custDetails['receiver_name'] }}<br>
+                                        Kindly remind them to go and redeem.<br><br>
+                                        Thank you for for shopping with us
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
 
-                    <div class="mini-cart-details" style="box-shadow: none;background: none;">
+
+                    <div class="mini-cart-details" style="box-shadow: none;background: none;margin-top: 20px;height: initial">
                         <a href="{{ url('/') }}" class="btn btn-success btn-block"style="background-color: #6dbc92;border-color: #6dbc92;">Continue shopping</a>
                     </div>
                 </div>

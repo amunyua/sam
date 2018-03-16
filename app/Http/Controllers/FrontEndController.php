@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\SendSms;
+use App\Models\Broadcast;
 use App\Models\Order;
 use App\Models\OrderLine;
 use App\Models\Payment;
@@ -13,6 +14,7 @@ use App\Models\Store;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 use infobip;
 use JsonMapper;
@@ -474,6 +476,19 @@ class FrontEndController extends Controller
                             $order->valid = true;
                             $order->save();
                             $message = "Dear ".$order->receiver_name.' '.$order->sender_name.' has sent you a voucher';
+                            $mess = Broadcast::where('action','OrderConfirmation')->first();
+                            if(!is_null($mess)){
+                                $message = str_replace([
+                                    '@receiver','@sender','@store','@code'
+                                ],[
+                                    $order->receiver_name,
+                                    $order->sender_name,
+                                    Store::find($order->store_id)->store_name,
+                                    $order->id
+                                ],$mess->message);
+//                                var_dump($message);die;
+                            }
+
                             $sms = new Sms();
                             $sms->message = $message;
                             $sms->recipient = $order->receiver_phone;
@@ -492,11 +507,11 @@ class FrontEndController extends Controller
         }
 
 //        if($status){
-            return redirect('complete/'.$request->id);
+            return redirect('complete');
 //        }
     }
 
-    public function complete($id){
+    public function complete(){
         session_start();
         $cart = (isset($_SESSION['cart']))? $_SESSION["cart"]:[];
         return view('shop.complete',[

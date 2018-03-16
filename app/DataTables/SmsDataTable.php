@@ -18,7 +18,8 @@ class SmsDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'sms.datatables_actions');
+        return $dataTable;
+//            ->addColumn('action', 'sms.datatables_actions');
     }
 
     /**
@@ -42,7 +43,7 @@ class SmsDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '80px'])
+//            ->addAction(['width' => '80px'])
             ->parameters([
                 'dom'     => 'Bfrtip',
                 'order'   => [[0, 'desc']],
@@ -64,13 +65,13 @@ class SmsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'message_id',
+//            'message_id',
             'recipient',
             'sender',
             'message',
             'sent',
             'delivered',
-            'store_id'
+//            'store_id'
         ];
     }
 

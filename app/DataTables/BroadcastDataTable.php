@@ -64,10 +64,12 @@ class BroadcastDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'action',
+            'action'=>[
+                'title'=>"Event"
+            ],
             'message',
             'status',
-            'store_id'
+//            'store_id'
         ];
     }
 

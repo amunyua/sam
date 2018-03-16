@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route as RouteDetails;
 
 class LoadMenus extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function loadSideMenuOld($parent_id){
         $menus = (is_null($parent_id) || empty($parent_id)) ?  Menu::whereNull('parent_menu')->where([['menu_status', '=', 1]])->orderBy('sequence', 'asc')->get() : Menu::where([['parent_menu', '=', $parent_id], ['menu_status', '=', 1]])->orderBy('sequence', 'asc')->get();

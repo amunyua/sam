@@ -18,6 +18,7 @@ class SmsController extends AppBaseController
 
     public function __construct(SmsRepository $smsRepo)
     {
+        $this->middleware('auth');
         $this->smsRepository = $smsRepo;
     }
 

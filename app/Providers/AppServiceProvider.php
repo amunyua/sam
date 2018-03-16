@@ -64,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
 //                        print_r($pmenu);die;
                         $whole_object[] = (object)[
                             'title'=>$pmenu['route_name'],
-//                            'icon'=>$pmenu['icon'],
+                            'icon'=>$pmenu['icon'],
                             'url'=>'#',
                             'id'=>'idA'.$count,
                             'parent'=>true,

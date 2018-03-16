@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBroadcastsTable extends Migration
+class CreateVisitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateBroadcastsTable extends Migration
      */
     public function up()
     {
-        Schema::create('broadcasts', function (Blueprint $table) {
+        Schema::create('visits', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('action');
-            $table->text('message');
-            $table->string('status')->default(true);
-            $table->integer('store_id')->unsigned()->index();
-            $table->softDeletes();
+            $table->ipAddress('ip');
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateBroadcastsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('broadcasts');
+        Schema::dropIfExists('visits');
     }
 }
