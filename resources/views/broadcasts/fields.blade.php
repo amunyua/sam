@@ -1,15 +1,16 @@
-<!-- Action Field -->
-<div class="form-group col-sm-12 label-floating is-empty">
-    {!! Form::label('action', 'Action',['class' => 'control-label']) !!}
-    {!! Form::text('action', null, ['class' => 'form-control']) !!}
-</div>
+{{--<!-- Action Field -->--}}
+{{--<div class="form-group col-sm-12 label-floating is-empty">--}}
+    {{--{!! Form::label('action', 'Action',['class' => 'control-label']) !!}--}}
+    {{--{!! Form::text('action', null, ['class' => 'form-control']) !!}--}}
+{{--</div>--}}
 
 <!-- Message Field -->
 <div class="form-group col-sm-12 label-floating is-empty">
     {!! Form::label('message', 'Message',['class' => 'control-label']) !!}
-    {!! Form::text('message', null, ['class' => 'form-control']) !!}
+    {{--{!! Form::text('message', null, ['class' => 'form-control']) !!}--}}
+    <textarea rows="3" class="form-control" name="message" id="message"></textarea>
 </div>
-
+{{--
 <!-- Status Field -->
 <div class="form-group col-sm-12 label-floating is-empty">
     {!! Form::label('status', 'Status',['class' => 'control-label']) !!}
@@ -20,6 +21,6 @@
 <div class="form-group col-sm-12 label-floating is-empty">
     {!! Form::label('store_id', 'Store Id',['class' => 'control-label']) !!}
     {!! Form::number('store_id', null, ['class' => 'form-control']) !!}
-</div>
+</div>--}}
 
 

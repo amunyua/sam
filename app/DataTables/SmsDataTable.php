@@ -30,7 +30,7 @@ class SmsDataTable extends DataTable
      */
     public function query(Sms $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderByDesc('id');
     }
 
     /**

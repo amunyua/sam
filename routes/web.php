@@ -77,3 +77,7 @@ Route::resource('payments', 'PaymentController');
 Route::resource('broadcasts', 'BroadcastController');
 
 Route::resource('sms', 'SmsController');
+
+Route::get('redeem-order','ReportsController@redeemOrder');
+Route::post('searchOrder','ReportsController@searchOrder');
+Route::post('submit-redeem','ReportsController@RedeemOderDetails');

@@ -81,6 +81,13 @@ class RouteSeeder extends Seeder
         ]);
         $comChild->roles()->attach($admin);
 
+//        $redeem = Route::create([
+//           'route_name'=> 'Redeem Order',
+//           'url'=>'redeem',
+//           'icon'=>'assignment_turned_in',
+//            'sequence'=>3
+//        ]);
+//        $redeem->roles()->attach($admin);
         #### Store management
         $store_management = new Route();
         $store_management->route_name = 'Store Management';
@@ -149,7 +156,21 @@ class RouteSeeder extends Seeder
 
         ]);
         $orderChild->roles()->attach($admin);
+        $orderChild = Route::create([
+            'route_name' => 'Redeem Order',
+            'url'=> 'redeem-order',
+            'parent_route' => $order->id,
 
+        ]);
+        $orderChild->roles()->attach($admin);
+
+//        ########  Reports
+//        $order = Route::create([
+//            'route_name' => "Reports",
+//            'url' => '#',
+//            'icon'=>'shopping_cart',
+//            'sequence'=> 4
+//        ]);
         #### user management
         $user_mngt = new Route();
         $user_mngt->route_name = 'User Management';

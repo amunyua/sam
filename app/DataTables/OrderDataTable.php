@@ -29,7 +29,7 @@ class OrderDataTable extends DataTable
      */
     public function query(Order $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderByDesc('id')->with('store');
     }
 
     /**
@@ -65,20 +65,24 @@ class OrderDataTable extends DataTable
     {
         return [
             'sender_name',
-            'sender_email',
+//            'sender_email',
             'sender_number',
             'receiver_name',
-            'receiver_email',
+//            'receiver_email',
             'receiver_phone',
-            'store_id',
-            'total',
+            'store.store_name'=>[
+                'title'=>'Store'
+            ],
+//            'total',
             'amount_paid',
             'payment_method',
             'refCode',
-            'paid',
-            'valid',
+//            'paid',
+//            'valid',
             'collected',
-            'ip'
+            'created_at'=>[
+                'title'=>'Date'
+            ]
         ];
     }
 

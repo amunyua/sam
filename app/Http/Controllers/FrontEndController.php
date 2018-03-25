@@ -494,6 +494,7 @@ class FrontEndController extends Controller
                             $sms->recipient = $order->receiver_phone;
                             $sms->sender = $order->sender_number;
                             $sms->store_id = $order->store_id;
+                            $sms->sent = true;
                             $sms->save();
                             SendSms::dispatch($message,$order->receiver_phone,$sms->id);
                         });

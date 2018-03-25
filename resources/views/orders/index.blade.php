@@ -6,14 +6,14 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-icon" data-background-color="purple">
-                            <i class="material-icons">assignment</i>
+                            <i class="material-icons">shopping_cart</i>
                         </div>
                         <div class="card-content">
                             <h4 class="card-title">Orders</h4>
                             <div class="toolbar">
                              <div class="row">
                                 <div class="col-md-12">
-                                    <a href="#create-modal" data-toggle="modal" class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px;" >Add New</a>
+                                    {{--<a href="#create-modal" data-toggle="modal" class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px;" >Add New</a>--}}
                                 </div>
                                 </div>
                                 @include('flash::message')

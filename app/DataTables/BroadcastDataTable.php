@@ -18,7 +18,8 @@ class BroadcastDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'broadcasts.datatables_actions');
+        return $dataTable->addColumn('actions', 'broadcasts.datatables_actions')
+            ->rawColumns(['status','actions']);
     }
 
     /**
@@ -42,7 +43,7 @@ class BroadcastDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '80px'])
+//            ->addAction(['width' => '80px'])
             ->parameters([
                 'dom'     => 'Bfrtip',
                 'order'   => [[0, 'desc']],
@@ -68,7 +69,10 @@ class BroadcastDataTable extends DataTable
                 'title'=>"Event"
             ],
             'message',
-            'status',
+            'status'=>[
+                'data'=>'actions',
+                'title'=>'Action'
+            ],
 //            'store_id'
         ];
     }
